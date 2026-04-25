@@ -257,11 +257,6 @@ const Hero = () => {
       <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(128,168,255,0.15) 1px, transparent 1px)", backgroundSize: "44px 44px", pointerEvents: "none" }} />
 
       <motion.div style={{ y, opacity, display: "flex", flexDirection: "column", alignItems: "center", width: "100%", maxWidth: "860px", position: "relative" }}>
-        <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} style={{ marginBottom: "1.6rem" }}>
-          <span style={{ background: "var(--accent-light)", border: "1px solid var(--accent-border)", color: "var(--accent-2)", fontSize: "0.68rem", fontWeight: 500, padding: "0.3rem 1rem", borderRadius: "100px", letterSpacing: "0.04em", textTransform: "lowercase" }}>
-            your email revenue system
-          </span>
-        </motion.div>
 
         {/* Headline — 3 separate block lines so animated word is always on its own row */}
         <motion.h1 initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}
@@ -509,7 +504,7 @@ const Services = () => (
 
                   ...(isLast && {
                     gridColumn: "1 / -1",
-                   
+
                     maxWidth: "none",
                     margin: 0,
                   }),
@@ -566,12 +561,12 @@ const Services = () => (
    OUR REVENUE SYSTEM — 6-step stacking cards
    ============================================================ */
 const STEPS = [
-  { num: "01", tag: "audit", title: "backend audit and revenue mapping", desc: "we identify exactly where your revenue is leaking across your funnel, flows, and customer lifecycle, then map the highest impact fixes in order of priority" },
-  { num: "02", tag: "capture", title: "capture architecture", desc: "we rebuild how you capture leads not for volume, but for intent using behavior driven triggers and offer alignment that attracts buyers, not browsers" },
-  { num: "03", tag: "welcome", title: "welcome conversion engine", desc: "we turn new subscribers into customers with a structured sequence that builds trust, handles objections, and drives action within the highest converting window" },
-  { num: "04", tag: "abandonment", title: "abandonment recovery system", desc: "we recover lost revenue from high intent users with targeted sequences across browse, cart, and checkout each tailored to why they did not convert" },
-  { num: "05", tag: "monetisation", title: "post purchase monetisation", desc: "we increase revenue per customer with systems designed for second purchases, cross sells, and well timed follow ups that extend the buying cycle" },
-  { num: "06", tag: "retention", title: "retention and ltv structure", desc: "we build long term retention systems that reactivate customers, reward loyalty, and continuously increase lifetime value in the background" },
+  { num: "01", title: "backend audit and revenue mapping", desc: "we identify exactly where your revenue is leaking across your funnel, flows, and customer lifecycle, then map the highest impact fixes in order of priority" },
+  { num: "02", title: "capture architecture", desc: "we rebuild how you capture leads not for volume, but for intent using behavior driven triggers and offer alignment that attracts buyers, not browsers" },
+  { num: "03", title: "welcome conversion engine", desc: "we turn new subscribers into customers with a structured sequence that builds trust, handles objections, and drives action within the highest converting window" },
+  { num: "04", title: "abandonment recovery system", desc: "we recover lost revenue from high intent users with targeted sequences across browse, cart, and checkout each tailored to why they did not convert" },
+  { num: "05", title: "post purchase monetisation", desc: "we increase revenue per customer with systems designed for second purchases, cross sells, and well timed follow ups that extend the buying cycle" },
+  { num: "06", title: "retention and ltv structure", desc: "we build long term retention systems that reactivate customers, reward loyalty, and continuously increase lifetime value in the background" },
 ];
 const CARD_COLORS = ["#80A8FF", "#8EB8FF", "#CEB5FF", "#8EC1DE", "#A8D4E8", "#D3D3FF"];
 const GROW_SLOTS = 1;
@@ -581,9 +576,8 @@ const StepCard = ({ step, color }) => (
   <div className="stack-card-inner" style={{ width: "100%", maxWidth: "1000px" }}>
     <div style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: "clamp(2rem, 3vw, 2.4rem)", color, lineHeight: 1, opacity: 0.22, flexShrink: 0, letterSpacing: "-0.04em" }}>{step.num}</div>
     <div style={{ flex: 1 }}>
-      <Tag color={color}>{step.tag}</Tag>
       <h3 style={{ fontFamily: "var(--font)", fontWeight: 600, fontSize: "clamp(1.1rem, 1.8vw, 1.3rem)", letterSpacing: "-0.01em", marginBottom: "0.6rem", lineHeight: 1.35 }}>{step.title}</h3>
-      <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", lineHeight: 1.75 , maxWidth: "100%" }}>{step.desc}</p>
+      <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", lineHeight: 1.75, maxWidth: "100%" }}>{step.desc}</p>
     </div>
   </div>
 );
@@ -644,13 +638,6 @@ const Outcome = () => {
   const rotateX = useTransform(scrollYProgress, [0, 0.4], [24, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.4], [0.65, 1]);
 
-  const stats = [
-    { val: "3.8×", label: "average roi", sub: "on email spend" },
-    { val: "47%", label: "repeat purchase rate", sub: "avg across clients" },
-    { val: "62 days", label: "to first measurable lift", sub: "from kickoff" },
-    { val: "$240k", label: "avg annual backend rev", sub: "added per brand" },
-  ];
-
   return (
     <>
       <Bridge from="var(--dark)" to="var(--dark-2)" />
@@ -685,39 +672,67 @@ const Outcome = () => {
               scale,
               perspective: "1200px",
               transformOrigin: "center top",
-              marginBottom: "2rem",
-              paddingBottom: "4rem",
               willChange: "transform"
             }}
           >
-            {/* OUTER (shape holder) */}
-            <div style={{
-              background: "#1a1b2e",
-              borderRadius: "14px",
-              border: "2px solid #2a2b40",
-              padding: "10px"
-            }}>
 
-              {/* SCREEN */}
+            {/* LAPTOP WRAPPER — narrows so base looks proportional */}
+            <div style={{ padding: "0 5%" }}>
+
+              {/* LID / SCREEN BEZEL */}
               <div style={{
-                background: "#0c0d18",
-                borderRadius: "10px",
-                overflow: "hidden",
-                aspectRatio: "16/10"
+                background: "#1a1b2e",
+                borderRadius: "12px 12px 0 0",
+                border: "2px solid #2a2b40",
+                borderBottom: "none",
+                padding: "12px 12px 0",
               }}>
-                <img
-                  src="/assets/st.png"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover"
-                  }}
-                />
+                {/* camera dot */}
+                <div style={{
+                  width: 6, height: 6,
+                  borderRadius: "50%",
+                  background: "#2a2b40",
+                  margin: "0 auto 8px",
+                }} />
+
+                {/* SCREEN */}
+                <div style={{
+                  background: "#0c0d18",
+                  borderRadius: "6px 6px 0 0",
+                  overflow: "hidden",
+                  lineHeight: 0,
+                }}>
+                  <img
+                    src="/assets/laptop.jpeg"
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                  />
+                </div>
+              </div>
+
+              {/* BASE */}
+              <div style={{
+                background: "#16172a",
+                border: "2px solid #2a2b40",
+                borderTop: "1px solid #3a3b50",
+                borderRadius: "0 0 10px 10px",
+                height: "22px",
+                position: "relative",
+              }}>
+                {/* trackpad */}
+                <div style={{
+                  width: 60, height: 10,
+                  borderRadius: 4,
+                  background: "#1e1f35",
+                  border: "1px solid #2a2b40",
+                  position: "absolute",
+                  top: "50%", left: "50%",
+                  transform: "translate(-50%, -50%)",
+                }} />
               </div>
 
             </div>
-          </motion.div>
 
+          </motion.div>
 
         </div>
       </section>
@@ -728,26 +743,6 @@ const Outcome = () => {
    QUIZ — "find out exactly where your backend is leaking revenue"
    Smart scoring with category tags and auto-fill biggest opportunity
    ============================================================ */
-
-// ─────────────────────────────────────────────────────────
-//  Quiz.jsx  — fully updated
-//
-//  Lucide icons needed (add to your existing import):
-//  import { Mail, ArrowRight, Clock, CheckCircle, PhoneCall } from "lucide-react"
-// ─────────────────────────────────────────────────────────
-
-// ─────────────────────────────────────────────────────────
-//  Quiz.jsx  — fully updated with Netlify Forms
-//
-//  Lucide icons needed (add to your existing import):
-//  import { Mail, ArrowRight, Clock, CheckCircle, PhoneCall } from "lucide-react"
-//
-//  After deploying to Netlify:
-//  1. Go to Netlify dashboard → Forms → "quiz-leads" will appear
-//  2. Go to Form notifications → add your company email
-//  3. Every submission gets emailed to you instantly
-// ─────────────────────────────────────────────────────────
-
 const QUIZ = [
   {
     q: "What % of your total revenue comes from email?",
@@ -879,23 +874,17 @@ function getScoreCategory(total) {
 function getBiggestOpportunity(scores) {
   const cats = Object.keys(scores);
   if (!cats.length) return null;
-  cats.sort((a, b) => scores[a] - scores[b]);
-  return { primary: cats[0], secondary: cats[1] || null };
+  const sorted = [...cats].sort((a, b) => scores[a] - scores[b]);
+  return { primary: sorted[0], secondary: sorted[1] || null };
 }
 
-// PHASES: "quiz" → "score" → "contact" → "done"
 const Quiz = () => {
-  const [phase, setPhase] = useState("quiz"); // "quiz" | "score" | "contact" | "done"
+  const [phase, setPhase] = useState("quiz");
   const [step, setStep] = useState(0);
   const [animKey, setAnimKey] = useState(0);
   const [scores, setScores] = useState({});
   const [totalScore, setTotalScore] = useState(0);
   const [result, setResult] = useState(null);
-  const [nameVal, setNameVal] = useState("");
-  const [emailVal, setEmailVal] = useState("");
-  const [businessVal, setBusinessVal] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [errors, setErrors] = useState({});
 
   const handleAnswer = (opt) => {
     const q = QUIZ[step];
@@ -916,83 +905,26 @@ const Quiz = () => {
     }
   };
 
-  const validate = () => {
-    const e = {};
-    if (!nameVal.trim()) e.name = "required";
-    if (!businessVal.trim()) e.business = "required";
-    if (!emailVal.includes("@")) e.email = "valid email required";
-    setErrors(e);
-    return !Object.keys(e).length;
-  };
+  const isScore = phase === "score";
+  const progress = isScore ? 100 : Math.round((step / QUIZ.length) * 100);
+  const progressLabel = isScore ? "your results" : `q${step + 1} of ${QUIZ.length}`;
 
-  const handleSubmit = async () => {
-    if (!validate()) return;
-    setSaving(true);
-
-    // Netlify Forms submission
-    const formData = new FormData();
-    formData.append("form-name", "quiz-leads");
-    formData.append("name", nameVal.trim());
-    formData.append("business", businessVal.trim());
-    formData.append("email", emailVal.trim());
-    formData.append("score", totalScore);
-    formData.append("top_opportunity", scores ? Object.keys(scores).sort((a, b) => scores[a] - scores[b])[0] || "" : "");
-    formData.append("scores_detail", JSON.stringify(scores));
-
-    try {
-      await fetch("/", { method: "POST", body: formData });
-    } catch (_) {}
-
-    setSaving(false);
-    setPhase("done");
-  };
-
-  const progress =
-    phase === "done"
-      ? 100
-      : phase === "contact"
-      ? 96
-      : phase === "score"
-      ? 88
-      : (step / QUIZ.length) * 100;
-
-  const allFilled =
-    nameVal.trim() && emailVal.includes("@") && businessVal.trim();
   const category = result ? getScoreCategory(result.total) : null;
   const opp = result ? getBiggestOpportunity(result.catScores) : null;
+  const hasOpp = opp && opp.primary;
+  const hasSecondary = opp && opp.secondary;
 
-  const baseInput = {
-    background: "var(--dark-4)",
-    border: "1px solid var(--border)",
-    borderRadius: "9px",
-    padding: "0.7rem 0.9rem",
-    color: "var(--text)",
-    fontFamily: "var(--font)",
-    fontSize: "0.78rem",
-    outline: "none",
-    width: "100%",
-    transition: "border-color 0.15s",
-  };
+  const manyOpts = QUIZ[step] && QUIZ[step].opts.length > 4;
 
   return (
     <>
-      {/* Hidden form — Netlify scans this at build time to register the form */}
-      <form name="quiz-leads" data-netlify="true" hidden>
-        <input type="hidden" name="form-name" value="quiz-leads" />
-        <input name="name" />
-        <input name="business" />
-        <input name="email" />
-        <input name="score" />
-        <input name="top_opportunity" />
-        <input name="scores_detail" />
-      </form>
-
       <Bridge from="var(--dark-2)" to="var(--dark)" />
       <section
         id="audit"
         style={{ padding: "1rem 1.5rem 1rem", background: "var(--dark)" }}
       >
         <div style={{ maxWidth: "680px", margin: "0 auto" }}>
+
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1011,15 +943,8 @@ const Quiz = () => {
             >
               find out exactly where your backend is leaking revenue
             </h2>
-            <p
-              style={{
-                color: "var(--text-muted)",
-                fontSize: "0.9rem",
-                lineHeight: 1.75,
-              }}
-            >
-              answer 8 quick questions and get an instant breakdown of your
-              retention gaps plus a detailed audit sent to you
+            <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.75 }}>
+              answer 8 quick questions and get an instant breakdown of your retention gaps
             </p>
           </motion.div>
 
@@ -1032,53 +957,19 @@ const Quiz = () => {
               boxShadow: "var(--shadow)",
             }}
           >
-            {/* ── Progress bar ── */}
+            {/* Progress bar */}
             <div style={{ marginBottom: "1.6rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: "0.35rem",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "0.66rem",
-                    color: "var(--text-muted)",
-                    fontWeight: 500,
-                  }}
-                >
-                  {phase === "done"
-                    ? "done!"
-                    : phase === "contact"
-                    ? "almost there"
-                    : phase === "score"
-                    ? "your results"
-                    : `q${step + 1} of ${QUIZ.length}`}
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.35rem" }}>
+                <span style={{ fontSize: "0.66rem", color: "var(--text-muted)", fontWeight: 500 }}>
+                  {progressLabel}
                 </span>
-                <span
-                  style={{
-                    fontSize: "0.66rem",
-                    color: "var(--accent)",
-                    fontWeight: 600,
-                  }}
-                >
-                  {Math.round(progress)}%
+                <span style={{ fontSize: "0.66rem", color: "var(--accent)", fontWeight: 600 }}>
+                  {progress}%
                 </span>
               </div>
-              <div
-                style={{
-                  background: "var(--dark-4)",
-                  borderRadius: "100px",
-                  height: "3px",
-                }}
-              >
+              <div style={{ background: "var(--dark-4)", borderRadius: "100px", height: "3px" }}>
                 <motion.div
-                  style={{
-                    background: "var(--accent)",
-                    height: "3px",
-                    borderRadius: "100px",
-                  }}
+                  style={{ background: "var(--accent)", height: "3px", borderRadius: "100px" }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.32 }}
                 />
@@ -1087,7 +978,7 @@ const Quiz = () => {
 
             <AnimatePresence mode="wait">
 
-              {/* ── QUIZ PHASE ── */}
+              {/* QUIZ PHASE */}
               {phase === "quiz" && (
                 <motion.div
                   key={animKey}
@@ -1104,6 +995,7 @@ const Quiz = () => {
                       marginBottom: "1.1rem",
                       lineHeight: 1.45,
                       letterSpacing: "-0.01em",
+                      color: "var(--text)",
                     }}
                   >
                     {QUIZ[step].q}
@@ -1111,8 +1003,7 @@ const Quiz = () => {
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns:
-                        QUIZ[step].opts.length > 4 ? "1fr" : "1fr 1fr",
+                      gridTemplateColumns: manyOpts ? "1fr" : "1fr 1fr",
                       gap: "0.5rem",
                     }}
                   >
@@ -1136,8 +1027,7 @@ const Quiz = () => {
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.borderColor = "var(--accent)";
-                          e.currentTarget.style.background =
-                            "var(--accent-light)";
+                          e.currentTarget.style.background = "var(--accent-light)";
                           e.currentTarget.style.color = "var(--accent)";
                         }}
                         onMouseLeave={(e) => {
@@ -1153,7 +1043,7 @@ const Quiz = () => {
                 </motion.div>
               )}
 
-              {/* ── SCORE PHASE ── shows result, then button → contact */}
+              {/* SCORE PHASE */}
               {phase === "score" && category && (
                 <motion.div
                   key="score"
@@ -1162,7 +1052,7 @@ const Quiz = () => {
                   exit={{ opacity: 0, x: -16 }}
                   transition={{ duration: 0.18 }}
                 >
-                  {/* BIG score number */}
+                  {/* Score number */}
                   <div style={{ textAlign: "center", marginBottom: "1.6rem" }}>
                     <div
                       style={{
@@ -1176,7 +1066,6 @@ const Quiz = () => {
                     >
                       Your Score
                     </div>
-                    {/* Huge score number */}
                     <div
                       style={{
                         fontSize: "clamp(3.5rem, 10vw, 5rem)",
@@ -1188,17 +1077,10 @@ const Quiz = () => {
                       }}
                     >
                       {result.total}
-                      <span
-                        style={{
-                          fontSize: "0.35em",
-                          color: "var(--text-muted)",
-                          fontWeight: 400,
-                        }}
-                      >
+                      <span style={{ fontSize: "0.35em", color: "var(--text-muted)", fontWeight: 400 }}>
                         /32
                       </span>
                     </div>
-                    {/* Attention-grabbing headline */}
                     <div
                       style={{
                         marginTop: "0.75rem",
@@ -1226,16 +1108,10 @@ const Quiz = () => {
                     </div>
                   </div>
 
-                  <div
-                    style={{
-                      height: "1px",
-                      background: "var(--border)",
-                      margin: "0 0 1.4rem",
-                    }}
-                  />
+                  <div style={{ height: "1px", background: "var(--border)", margin: "0 0 1.4rem" }} />
 
-                  {/* Biggest Opportunity — bold title treatment */}
-                  {opp && opp.primary && (
+                  {/* Biggest Opportunity */}
+                  {hasOpp && (
                     <div style={{ marginBottom: "1.5rem" }}>
                       <div
                         style={{
@@ -1245,7 +1121,6 @@ const Quiz = () => {
                           marginBottom: "0.6rem",
                         }}
                       >
-                        <span style={{ fontSize: "1rem" }}>⚡</span>
                         <div
                           style={{
                             fontSize: "0.6rem",
@@ -1261,37 +1136,30 @@ const Quiz = () => {
 
                       <div
                         style={{
-                          background: "linear-gradient(135deg, #fff8f2 0%, #fff3e6 100%)",
-                          border: "1.5px solid #f5c09a",
+                          background: "var(--dark-4)",
+                          border: "1.5px solid var(--accent)",
                           borderRadius: "13px",
                           padding: "1rem 1.1rem",
                         }}
                       >
-                        {/* Large opportunity title */}
                         <div
                           style={{
                             fontFamily: "var(--font)",
                             fontWeight: 700,
                             fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-                            color: "#b84400",
+                            color: "var(--accent)",
                             marginBottom: "0.35rem",
                             letterSpacing: "-0.01em",
                           }}
                         >
                           {CAT_LABELS[opp.primary]}
                         </div>
-                        <div
-                          style={{
-                            fontSize: "0.76rem",
-                            color: "#7a3800",
-                            lineHeight: 1.7,
-                          }}
-                        >
+                        <div style={{ fontSize: "0.76rem", color: "var(--text)", lineHeight: 1.7 }}>
                           {CAT_DETAIL[opp.primary]}
                         </div>
                       </div>
 
-                      {opp.secondary && (
+                      {hasSecondary && (
                         <div
                           style={{
                             marginTop: "0.65rem",
@@ -1323,13 +1191,7 @@ const Quiz = () => {
                           >
                             {CAT_LABELS[opp.secondary]}
                           </div>
-                          <div
-                            style={{
-                              fontSize: "0.7rem",
-                              color: "var(--text-muted)",
-                              lineHeight: 1.6,
-                            }}
-                          >
+                          <div style={{ fontSize: "0.7rem", color: "var(--text-muted)", lineHeight: 1.6 }}>
                             {CAT_DETAIL[opp.secondary]}
                           </div>
                         </div>
@@ -1344,268 +1206,17 @@ const Quiz = () => {
                           textAlign: "center",
                         }}
                       >
-                        Based on brands at your stage, you could be missing
-                        15–35% in additional backend revenue
+                        Based on brands at your stage, you could be missing 15–35% in additional backend revenue
                       </div>
                     </div>
                   )}
 
-                  {/* CTA → moves to contact form */}
-                  <button
-                    onClick={() => setPhase("contact")}
-                    style={{
-                      width: "100%",
-                      background: "var(--accent)",
-                      color: "#fff",
-                      border: "none",
-                      borderRadius: "100px",
-                      padding: "0.85rem 1.5rem",
-                      fontFamily: "var(--font)",
-                      fontSize: "0.82rem",
-                      fontWeight: 700,
-                      cursor: "pointer",
-                      letterSpacing: "0.01em",
-                    }}
-                  >
-                    Get My Full Breakdown →
-                  </button>
-                  <p
-                    style={{
-                      textAlign: "center",
-                      fontSize: "0.63rem",
-                      color: "var(--text-muted)",
-                      marginTop: "0.5rem",
-                    }}
-                  >
-                    We'll send a detailed audit straight to your inbox
-                  </p>
-                </motion.div>
-              )}
-
-              {/* ── CONTACT PHASE ── */}
-              {phase === "contact" && (
-                <motion.div
-                  key="contact"
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -16 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  {/* Centered header */}
-                  <div style={{ textAlign: "center", marginBottom: "1.75rem" }}>
-                    <div style={{ width: "44px", height: "44px", background: "var(--dark-4)", border: "1px solid var(--border)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 0.9rem" }}>
-                      <Mail size={16} color="var(--text-muted)" />
-                    </div>
-                    <h3 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "1.15rem", letterSpacing: "-0.02em", marginBottom: "0.35rem" }}>
-                      Where should we send your breakdown?
-                    </h3>
-                    <p style={{ color: "var(--text-muted)", fontSize: "0.76rem", lineHeight: 1.7, maxWidth: "340px", margin: "0 auto" }}>
-                      A detailed audit with your specific leaks, a quick win you can implement now, and a clear path forward.
-                    </p>
-                  </div>
-
-                  {/* Divider */}
-                  <div style={{ height: "1px", background: "var(--border)", margin: "0 0 1.5rem" }} />
-
-                  {/* Fields with labels */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.5rem" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem" }}>
-                      {[
-                        { label: "Your name", val: nameVal, set: setNameVal, ph: "Alex Smith", err: errors.name },
-                        { label: "Business name", val: businessVal, set: setBusinessVal, ph: "Acme Store", err: errors.business },
-                      ].map((f) => (
-                        <div key={f.label}>
-                          <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "5px" }}>
-                            {f.label}
-                          </div>
-                          <input
-                            value={f.val}
-                            onChange={(e) => f.set(e.target.value)}
-                            placeholder={f.ph}
-                            style={{ ...baseInput, borderColor: f.err ? "rgba(220,60,60,0.5)" : "var(--border)" }}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                    <div>
-                      <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "5px" }}>
-                        Email address
-                      </div>
-                      <input
-                        type="email"
-                        value={emailVal}
-                        onChange={(e) => setEmailVal(e.target.value)}
-                        placeholder="you@yourbrand.com"
-                        style={{ ...baseInput, borderColor: errors.email ? "rgba(220,60,60,0.5)" : "var(--border)" }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Centered submit button */}
-                  <div style={{ textAlign: "center" }}>
-                    <button
-                      onClick={handleSubmit}
-                      disabled={saving}
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "8px",
-                        background: allFilled ? "var(--text)" : "var(--dark-4)",
-                        color: allFilled ? "#fff" : "var(--text-muted)",
-                        border: "none",
-                        borderRadius: "100px",
-                        padding: "0 28px",
-                        height: "44px",
-                        fontFamily: "var(--font)",
-                        fontSize: "0.8rem",
-                        fontWeight: 600,
-                        cursor: allFilled ? "pointer" : "not-allowed",
-                        opacity: saving ? 0.7 : 1,
-                        transition: "all 0.2s",
-                      }}
-                    >
-                      {saving ? "Sending…" : "Send my full breakdown"}
-                      {!saving && <ArrowRight size={14} />}
-                    </button>
-                    <p style={{ marginTop: "10px", fontSize: "0.63rem", color: "var(--text-muted)", display: "flex", alignItems: "center", justifyContent: "center", gap: "4px" }}>
-                      <Clock size={10} /> No spam — one follow-up with your results
-                    </p>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* ── DONE PHASE ── */}
-              {phase === "done" && result && (
-                <motion.div
-                  key="done"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.32 }}
-                >
-                  <div
-                    style={{
-                      textAlign: "center",
-                      marginBottom: "1.5rem",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "46px",
-                        height: "46px",
-                        background: "var(--accent-light)",
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        margin: "0 auto 0.85rem",
-                        color: "var(--accent)",
-                      }}
-                    >
-                      <CheckCircle size={20} />
-                    </div>
-                    <h3
-                      style={{
-                        fontFamily: "var(--font)",
-                        fontWeight: 700,
-                        fontSize: "1.2rem",
-                        marginBottom: "0.4rem",
-                      }}
-                    >
-                      Your breakdown is on its way
-                    </h3>
-                    <p
-                      style={{
-                        color: "var(--text-muted)",
-                        fontSize: "0.8rem",
-                        lineHeight: 1.65,
-                      }}
-                    >
-                      Check your inbox — we'll include your score analysis, the
-                      top leaks we spotted, and one quick win you can action
-                      immediately.
-                    </p>
-                  </div>
-                  {category && (
-                    <div
-                      style={{
-                        background: "var(--dark-4)",
-                        borderRadius: "12px",
-                        padding: "1.1rem",
-                        marginBottom: "1.25rem",
-                        border: "1px solid var(--border)",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontSize: "clamp(2.4rem, 3vw, 3rem)",
-                          color: "var(--accent)",
-                          fontWeight: 700,
-                          letterSpacing: "-0.02em",
-                          lineHeight: 1,
-                          marginBottom: "0.3rem",
-                        }}
-                      >
-                        {result.total}
-                        <span
-                          style={{
-                            fontSize: "0.35em",
-                            color: "var(--text-muted)",
-                            fontWeight: 400,
-                          }}
-                        >
-                          /32
-                        </span>
-                      </div>
-                      <div
-                        style={{ fontWeight: 600, fontSize: "1rem", marginBottom: "0.25rem" }}
-                      >
-                        {category.label}
-                      </div>
-                      {opp && opp.primary && (
-                        <>
-                          <div
-                            style={{
-                              fontSize: "0.6rem",
-                              color: "var(--accent-2)",
-                              fontWeight: 700,
-                              letterSpacing: "0.08em",
-                              textTransform: "uppercase",
-                              margin: "0.6rem 0 0.2rem",
-                            }}
-                          >
-                            Biggest Opportunity
-                          </div>
-                          <div
-                            style={{
-                              fontSize: "0.78rem",
-                              fontWeight: 600,
-                              marginBottom: "0.18rem",
-                            }}
-                          >
-                            {CAT_LABELS[opp.primary]}
-                          </div>
-                          <div
-                            style={{
-                              fontSize: "0.73rem",
-                              color: "var(--text-muted)",
-                              lineHeight: 1.6,
-                            }}
-                          >
-                            {CAT_DETAIL[opp.primary]}
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  )}
+                  {/* CTA */}
                   <a
                     href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
                     className="btn-primary"
-                    style={{
-                      fontSize: "0.82rem",
-                      width: "100%",
-                      justifyContent: "center",
-                    }}
-                  >
+                    style={{ fontSize: "0.82rem", width: "100%", justifyContent: "center" }}
+                    >
                     <PhoneCall size={13} /> Book Your Free Backend Audit
                   </a>
                 </motion.div>
@@ -1644,8 +1255,26 @@ const WhatHappensNext = () => {
   }, [scrollYProgress]);
 
   const Dot = ({ isActive }) => (
-    <div style={{ width: "13px", height: "13px", borderRadius: "50%", flexShrink: 0, background: isActive ? "var(--accent)" : "var(--dark-4)", border: `2px solid ${isActive ? "var(--accent)" : "var(--border)"}`, position: "relative", zIndex: 2, transition: "all 0.35s", boxShadow: isActive ? "0 0 10px rgba(128,168,255,0.6)" : "none" }}>
-      {isActive && <div style={{ position: "absolute", inset: "-5px", borderRadius: "50%", border: "1px solid var(--accent-border)" }} />}
+    <div style={{
+      width: "13px",
+      height: "13px",
+      borderRadius: "50%",
+      flexShrink: 0,
+      background: isActive ? "var(--accent)" : "var(--dark-4)",
+      border: `2px solid ${isActive ? "var(--accent)" : "var(--border)"}`,
+      position: "relative",
+      zIndex: 2,
+      transition: "all 0.35s",
+      boxShadow: isActive ? "0 0 10px rgba(128,168,255,0.6)" : "none"
+    }}>
+      {isActive && (
+        <div style={{
+          position: "absolute",
+          inset: "-5px",
+          borderRadius: "50%",
+          border: "1px solid var(--accent-border)"
+        }} />
+      )}
     </div>
   );
 
@@ -1654,31 +1283,137 @@ const WhatHappensNext = () => {
       <Bridge from="var(--dark)" to="var(--dark-2)" />
       <section id="process" ref={sectionRef} style={{ padding: "1rem 1.5rem 1rem", background: "var(--dark-2)" }}>
         <div style={{ maxWidth: "780px", margin: "0 auto" }}>
-          <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-            <h2 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 700, lineHeight: 1.2, letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "0.65rem" }}>what happens next</h2>
-            <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7, color: "var(--text-muted)", maxWidth: "480px" }}>
+
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ textAlign: "center", marginBottom: "3.5rem" }}
+          >
+            <h2 style={{
+              fontFamily: "var(--font)",
+              fontWeight: 700,
+              fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+              marginBottom: "0.65rem"
+            }}>
+              what happens next
+            </h2>
+            <p style={{
+              color: "var(--text-muted)",
+              fontSize: "0.85rem",
+              maxWidth: "480px",
+              margin: "0 auto",
+              lineHeight: 1.7
+            }}>
               a clear, structured path from insight to execution without guesswork, delays, or hand holding
             </p>
           </motion.div>
 
           {/* Desktop */}
           <div className="process-desktop-wrap" style={{ position: "relative" }}>
-            <div style={{ position: "absolute", left: "50%", top: 0, bottom: "0", width: "2px", background: "var(--border)", transform: "translateX(-50%)" }} />
-            <div style={{ position: "absolute", left: "50%", top: 0, width: "2px", transform: "translateX(-50%)", height: "calc(100% + 200px)", overflow: "hidden" }}>
-              <motion.div style={{ width: "100%", height: lineH, background: "linear-gradient(to bottom, var(--accent), var(--accent-2))" }} />
+
+            {/* Static background line */}
+            <div style={{
+              position: "absolute",
+              left: "50%",
+              top: 0,
+              bottom: 0,
+              width: "2px",
+              background: "var(--border)",
+              transform: "translateX(-50%)"
+            }} />
+
+            {/* Animated fill line */}
+            <div style={{
+              position: "absolute",
+              left: "50%",
+              top: 0,
+              width: "2px",
+              transform: "translateX(-50%)",
+              height: "100%",
+              overflow: "hidden"
+            }}>
+              <motion.div style={{
+                width: "100%",
+                height: lineH,
+                background: "linear-gradient(to bottom, var(--accent), var(--accent-2))"
+              }} />
             </div>
+
             {NEXT_STEPS.map((step, i) => {
               const isActive = i <= active;
               const side = i % 2 === 0 ? "left" : "right";
               return (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "1.5rem", flexDirection: side === "right" ? "row-reverse" : "row" }}>
-                  <motion.div initial={{ opacity: 0, x: side === "left" ? -18 : 18 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
-                    style={{ flex: 1, textAlign: side === "right" ? "right" : "left", padding: "1.6rem 0" }}>
-                    <span style={{ display: "inline-block", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", background: isActive ? "var(--accent-light)" : "var(--dark-4)", border: `1px solid ${isActive ? "var(--accent-border)" : "var(--border)"}`, color: isActive ? "var(--accent)" : "var(--text-muted)", padding: "0.13rem 0.5rem", borderRadius: "100px", letterSpacing: "0.07em", marginBottom: "0.5rem", transition: "all 0.35s" }}>{step.num}</span>
-                    <h3 style={{ fontFamily: "var(--font)", fontWeight: 600, lineHeight: 1.35, fontWeight: 600, fontSize: "1.05rem", letterSpacing: "-0.01em", marginBottom: "0.35rem", color: isActive ? "var(--text)" : "var(--text-muted)", transition: "color 0.35s", lineHeight: 1.35 }}>{step.title}</h3>
-                    <p style={{ color: "var(--text-muted)", fontSize: "0.78rem – 0.82rem", lineHeight: 1.72, maxWidth: "290px", marginLeft: side === "right" ? "auto" : 0 }}>{step.body}</p>
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "1.5rem",
+                    flexDirection: side === "right" ? "row-reverse" : "row"
+                  }}
+                >
+                  <motion.div
+                    initial={{ opacity: 0, x: side === "left" ? -18 : 18 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.07 }}
+                    style={{
+                      flex: 1,
+                      textAlign: side === "right" ? "right" : "left",
+                      padding: "1.6rem 0"
+                    }}
+                  >
+                    <span style={{
+                      display: "inline-block",
+                      fontSize: "0.6rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.07em",
+                      background: isActive ? "var(--accent-light)" : "var(--dark-4)",
+                      border: `1px solid ${isActive ? "var(--accent-border)" : "var(--border)"}`,
+                      color: isActive ? "var(--accent)" : "var(--text-muted)",
+                      padding: "0.13rem 0.5rem",
+                      borderRadius: "100px",
+                      marginBottom: "0.5rem",
+                      transition: "all 0.35s"
+                    }}>
+                      {step.num}
+                    </span>
+                    <h3 style={{
+                      fontFamily: "var(--font)",
+                      fontWeight: 600,
+                      fontSize: "1.05rem",
+                      letterSpacing: "-0.01em",
+                      lineHeight: 1.35,
+                      marginBottom: "0.35rem",
+                      color: isActive ? "var(--text)" : "var(--text-muted)",
+                      transition: "color 0.35s"
+                    }}>
+                      {step.title}
+                    </h3>
+                    <p style={{
+                      color: "var(--text-muted)",
+                      fontSize: "0.8rem",
+                      lineHeight: 1.72,
+                      maxWidth: "290px",
+                      marginLeft: side === "right" ? "auto" : 0
+                    }}>
+                      {step.body}
+                    </p>
                   </motion.div>
-                  <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "2.1rem" }}><Dot isActive={isActive} /></div>
+
+                  <div style={{
+                    flexShrink: 0,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    paddingTop: "2.1rem"
+                  }}>
+                    <Dot isActive={isActive} />
+                  </div>
+
                   <div style={{ flex: 1 }} />
                 </div>
               );
@@ -1687,19 +1422,87 @@ const WhatHappensNext = () => {
 
           {/* Mobile */}
           <div className="process-mobile-wrap" style={{ position: "relative" }}>
-            <div style={{ position: "absolute", left: "6px", top: 0, bottom: "0", width: "2px", background: "var(--border)", transform: "translateX(-50%)" }} />
-            <div style={{ position: "absolute", left: "6px", top: 0, width: "2px", transform: "translateX(-50%)", height: "calc(100% + 200px)", overflow: "hidden" }}>
-              <motion.div style={{ width: "100%", height: lineH, background: "linear-gradient(to bottom, var(--accent), var(--accent-2))" }} />
+
+            {/* Static background line */}
+            <div style={{
+              position: "absolute",
+              left: "6px",
+              top: 0,
+              bottom: 0,
+              width: "2px",
+              background: "var(--border)",
+              transform: "translateX(-50%)"
+            }} />
+
+            {/* Animated fill line */}
+            <div style={{
+              position: "absolute",
+              left: "6px",
+              top: 0,
+              width: "2px",
+              transform: "translateX(-50%)",
+              height: "100%",
+              overflow: "hidden"
+            }}>
+              <motion.div style={{
+                width: "100%",
+                height: lineH,
+                background: "linear-gradient(to bottom, var(--accent), var(--accent-2))"
+              }} />
             </div>
+
             {NEXT_STEPS.map((step, i) => {
               const isActive = i <= active;
               return (
-                <div key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start", marginBottom: "2rem" }}>
-                  <div style={{ flexShrink: 0, paddingTop: "0.2rem" }}><Dot isActive={isActive} /></div>
-                  <motion.div initial={{ opacity: 0, x: -14 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }} style={{ flex: 1 }}>
-                    <span style={{ display: "inline-block", fontSize: "0.6rem", fontWeight: 700, background: isActive ? "var(--accent-light)" : "var(--dark-4)", border: `1px solid ${isActive ? "var(--accent-border)" : "var(--border)"}`, color: isActive ? "var(--accent)" : "var(--text-muted)", padding: "0.12rem 0.48rem", borderRadius: "100px", letterSpacing: "0.07em", marginBottom: "0.38rem", transition: "all 0.35s" }}>{step.num}</span>
-                    <h3 style={{ fontFamily: "var(--font)", fontWeight: 600, fontSize: "0.95rem", letterSpacing: "-0.01em", marginBottom: "0.28rem",fontWeight: 600, lineHeight: 1.35, color: isActive ? "var(--text)" : "var(--text-muted)", transition: "color 0.35s" }}>{step.title}</h3>
-                    <p style={{ color: "var(--text-muted)", fontSize: "0.78rem – 0.82rem", lineHeight: 1.7 }}>{step.body}</p>
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    alignItems: "flex-start",
+                    marginBottom: "2rem"
+                  }}
+                >
+                  <div style={{ flexShrink: 0, paddingTop: "0.2rem" }}>
+                    <Dot isActive={isActive} />
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -14 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.07 }}
+                    style={{ flex: 1 }}
+                  >
+                    <span style={{
+                      display: "inline-block",
+                      fontSize: "0.6rem",
+                      fontWeight: 700,
+                      background: isActive ? "var(--accent-light)" : "var(--dark-4)",
+                      border: `1px solid ${isActive ? "var(--accent-border)" : "var(--border)"}`,
+                      color: isActive ? "var(--accent)" : "var(--text-muted)",
+                      padding: "0.12rem 0.48rem",
+                      borderRadius: "100px",
+                      letterSpacing: "0.07em",
+                      marginBottom: "0.38rem",
+                      transition: "all 0.35s"
+                    }}>
+                      {step.num}
+                    </span>
+                    <h3 style={{
+                      fontFamily: "var(--font)",
+                      fontWeight: 600,
+                      fontSize: "0.95rem",
+                      letterSpacing: "-0.01em",
+                      lineHeight: 1.35,
+                      marginBottom: "0.28rem",
+                      color: isActive ? "var(--text)" : "var(--text-muted)",
+                      transition: "color 0.35s"
+                    }}>
+                      {step.title}
+                    </h3>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", lineHeight: 1.7 }}>
+                      {step.body}
+                    </p>
                   </motion.div>
                 </div>
               );
@@ -1707,20 +1510,48 @@ const WhatHappensNext = () => {
           </div>
 
           {/* Walk away callout */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            style={{ textAlign: "center", marginTop: "3rem", paddingTop: "2.5rem", borderTop: "1px solid var(--border)" }}>
-            <h2 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "clamp(1.4rem, 3vw, 2rem)", letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "0.65rem" }}> what you’ll walk away with
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{
+              textAlign: "center",
+              marginTop: "3rem",
+              paddingTop: "2.5rem",
+              borderTop: "1px solid var(--border)"
+            }}
+          >
+            <h2 style={{
+              fontFamily: "var(--font)",
+              fontWeight: 700,
+              fontSize: "clamp(1.4rem, 3vw, 2rem)",
+              letterSpacing: "-0.02em",
+              lineHeight: 1.2,
+              marginBottom: "0.65rem"
+            }}>
+              what you'll walk away with
             </h2>
-            <p style={{ color: "var(--text-muted)", fontSize: "0.82rem", maxWidth: "480px", margin: "0 auto 1.5rem", lineHeight: 1.75 }}>
-              what you'll walk away with: a real time breakdown of your revenue leaks, clear gaps, practical fixes, and a tailored plan to capture what you're currently missing
+            <p style={{
+              color: "var(--text-muted)",
+              fontSize: "0.82rem",
+              maxWidth: "480px",
+              margin: "0 auto 1.5rem",
+              lineHeight: 1.75
+            }}>
+              a real time breakdown of your revenue leaks, clear gaps, practical fixes, and a tailored plan to capture what you're currently missing
             </p>
-            <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" className="btn-primary" style={{ fontSize: "0.84rem" }}>
+            
+             <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
+              className="btn-primary"
+              style={{ fontSize: "0.84rem" }}
+            >
               <PhoneCall size={13} /> book your free backend audit
             </a>
             <p style={{ color: "var(--text-muted)", fontSize: "0.68rem", marginTop: "0.6rem" }}>
               we log into your klaviyo, find the leaks, and map the fixes
             </p>
           </motion.div>
+
         </div>
       </section>
     </>
@@ -1777,7 +1608,7 @@ const FAQ = () => {
    PRICING CONTEXT — "what it takes to turn your backend..."
    ============================================================ */
 
-   // ─────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────
 //  PricingContext.jsx — updated
 //  - Wider container (1100px), no more empty side space
 //  - Bigger, properly padded form card
@@ -1823,7 +1654,7 @@ const PricingContext = () => {
 
     try {
       await fetch("/", { method: "POST", body: formData });
-    } catch (_) {}
+    } catch (_) { }
 
     setSending(false);
     setSent(true);
@@ -2073,14 +1904,12 @@ const FinalCTA = () => (
    SOCIAL PROOF MARQUEE
    ============================================================ */
 const testimonials = [
-  { name: "sarah k.", role: "cmo · prestige beauty", text: "went from $8k/month in email to $63k in 90 days. the attribution clarity alone changed how we think about our whole marketing mix." },
-  { name: "james r.", role: "founder · urban cycle", text: "our previous agency sent blasts. launchbackend built us an actual system. the win-back flow alone pays for the retainer 4× over." },
-  { name: "priya m.", role: "head of growth · nomad gear", text: "segmentation work in month one unlocked a customer segment we didn't know existed. $120k from that segment last quarter." },
-  { name: "tom h.", role: "ceo · freshcycle foods", text: "we were burning $40k/mo on facebook to drive repeat purchases. now email does that job and cac dropped 60%." },
-  { name: "leila a.", role: "director · luxe living", text: "open rates went from 18% to 51%. customers actually reply to our emails now. the copy is on another level." },
-  { name: "marcus d.", role: "founder · edge athletics", text: "built our entire lifecycle marketing in 3 weeks. every automation continues to generate revenue without us touching it." },
-  { name: "chen w.", role: "coo · botanics co.", text: "finally know what our email program actually contributes to the p&l. the monthly report is a thing of beauty." },
-  { name: "ana p.", role: "growth · bloom skincare", text: "rebuilt our klaviyo and had a campaign live in week one. speed and quality — rare combination." },
+  { role: "cmo", text: "went from $8k/month in email to $63k in 90 days. the attribution clarity alone changed how we think about our whole marketing mix." },
+  { role: "founder", text: "our previous agency sent blasts. launchbackend built us an actual system. the win-back flow alone pays for the retainer 4× over." },
+  { role: "head of growth ", text: "segmentation work in month one unlocked a customer segment we didn't know existed. $120k from that segment last quarter." },
+  { role: "ceo", text: "we were burning $40k/mo on facebook to drive repeat purchases. now email does that job and cac dropped 60%." },
+  { role: "director", text: "open rates went from 18% to 51%. customers actually reply to our emails now. the copy is on another level." },
+  { role: "founder", text: "built our entire lifecycle marketing in 3 weeks. every automation continues to generate revenue without us touching it." },
 ];
 
 const TestCard = ({ t }) => (

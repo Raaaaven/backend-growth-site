@@ -75,14 +75,6 @@ export default function Footer() {
                     { label: "Contact",   href: "/contact" },
                   ],
                 },
-                {
-                  heading: "Legal",
-                  links: [
-                    { label: "Privacy Policy",   href: "/privacy-policy" },
-                    { label: "Terms of Service", href: "/terms-of-service" },
-                    { label: "Cookie Policy",    href: "/cookie-policy" },
-                  ],
-                },
               ].map(({ heading, links }) => (
                 <div key={heading}>
                   <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.72rem" }}>
