@@ -3,10 +3,10 @@ import { PhoneCall, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Contact", href: "/contact" },
+  { label: "home", href: "/" },
+  { label: "about", href: "/about" },
+  { label: "portfolio", href: "/portfolio" },
+  { label: "contact", href: "/contact" },
 ];
 
 export default function Header() {
