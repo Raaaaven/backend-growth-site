@@ -103,9 +103,6 @@ export default function Footer() {
               <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" className="footer-btn">
                 <PhoneCall size={12} /> Book a Call
               </a>
-              <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", marginTop: "0.38rem" }}>
-                Free. No commitment.
-              </div>
             </div>
 
           </div>
