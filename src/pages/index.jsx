@@ -285,7 +285,7 @@ const Hero = () => {
 
         <motion.div className="hero-btns" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.42 }}
           style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="#audit" className="btn-primary" style={{ fontSize: "0.95rem", padding: "0.9rem 1.75rem" }}>
+          <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" className="btn-primary" style={{ fontSize: "0.95rem", padding: "0.9rem 1.75rem" }}>
             audit my klaviyo <ArrowRight size={14} />
           </a>
         </motion.div>
