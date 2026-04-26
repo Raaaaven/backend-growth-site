@@ -273,7 +273,11 @@ export default function Contact() {
                 ) : (
                   <motion.div key="form">
                     <form
+                      name="contact"
+                      method="POST"
+                      data-netlify="true"
                       onSubmit={handleSubmit}
+
                       style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "20px", padding: "2rem", boxShadow: "var(--shadow)" }}
                     >
                       <input type="hidden" name="form-name" value="contact" />
@@ -349,7 +353,7 @@ export default function Contact() {
                           transition: "transform 0.2s, box-shadow 0.2s",
                           fontFamily: "var(--font-sans)",
                         }}
-                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 26px rgba(128,168,255,0.45)"; }}}
+                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 26px rgba(128,168,255,0.45)"; } }}
                         onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
                       >
                         {loading ? "sending..." : <><Send size={14} /> send message</>}
