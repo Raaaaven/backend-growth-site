@@ -236,7 +236,6 @@ const Tag = ({ children, color = "var(--accent)" }) => (
    HERO
    ============================================================ */
 const ROTATING_WORDS = ["predictable", "compounding", "scalable", "automated", "measurable"];
-
 const Hero = () => {
   const [wordIdx, setWordIdx] = useState(0);
   const ref = useRef(null);
