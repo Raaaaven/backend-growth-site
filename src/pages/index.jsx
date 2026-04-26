@@ -1946,6 +1946,14 @@ const SocialProof = () => {
     </>
   );
 };
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="brand" />
+  <input type="text" name="website" />
+  <select name="service"></select>
+  <textarea name="message"></textarea>
+</form>
 
 /* ============================================================
    PAGE EXPORT
