@@ -1215,7 +1215,7 @@ const Quiz = () => {
                     href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
                     className="btn-primary"
                     style={{ fontSize: "0.82rem", width: "100%", justifyContent: "center" }}
-                    >
+                  >
                     <PhoneCall size={13} /> Book Your Free Backend Audit
                   </a>
                 </motion.div>
@@ -1539,8 +1539,8 @@ const WhatHappensNext = () => {
             }}>
               a real time breakdown of your revenue leaks, clear gaps, practical fixes, and a tailored plan to capture what you're currently missing
             </p>
-            
-             <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
+
+            <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
               className="btn-primary"
               style={{ fontSize: "0.84rem" }}
             >
@@ -1754,7 +1754,12 @@ const PricingContext = () => {
                   <>
                     {/* Form header */}
                     {/* Fields */}
-                    <form onSubmit={handleSubmit}>
+                    <form
+                      name="contact"
+                      method="POST"
+                      data-netlify="true"
+                      onSubmit={handleSubmit}
+                    >
                       {/* Name + Business row */}
                       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem", marginBottom: "0.85rem" }}>
                         <div>
