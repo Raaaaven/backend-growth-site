@@ -225,7 +225,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.1rem" }}>email us directly</div>
-                    <a href="mailto:hello@yourdomain.com" style={{ fontSize: "0.72rem", color: "var(--accent)", textDecoration: "none" }}>hello@yourdomain.com</a>
+                    <a href="mailto:kinza@launchbackend.online" style={{ fontSize: "0.72rem", color: "var(--accent)", textDecoration: "none" }}>kinza@launchbackend.online</a>
                     <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", marginTop: "0.2rem" }}>we typically respond within 24–48 hours.</div>
                   </div>
                 </div>
@@ -267,7 +267,7 @@ export default function Contact() {
                       thanks for reaching out. we'll review your details and be in touch within 24–48 hours.
                     </p>
                     <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.72rem 1.4rem", fontSize: "0.8rem", fontWeight: 600, textDecoration: "none" }}>
-                      <PhoneCall size={13} /> also book a free audit call →
+                      <PhoneCall size={13} /> also book a free audit call
                     </a>
                   </motion.div>
                 ) : (
