@@ -174,12 +174,11 @@ export default function Contact() {
       }}>
         <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: "500px", height: "300px", background: "radial-gradient(ellipse, rgba(142,193,222,0.2) 0%, transparent 70%)", pointerEvents: "none" }} />
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
-          <span style={{ display: "inline-block", background: "var(--accent-light)", border: "1px solid var(--accent-border)", color: "var(--accent)", fontSize: "0.65rem", fontWeight: 700, padding: "0.28rem 0.85rem", borderRadius: "100px", letterSpacing: "0.08em", textTransform: "none", marginBottom: "1.2rem" }}>get in touch</span>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 3.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em", marginBottom: "1.1rem" }}>
             let's talk about your<br /><em>backend revenue</em>
           </h1>
           <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", maxWidth: "500px", margin: "0 auto 0.75rem", lineHeight: 1.8 }}>
-            if your email system is not generating consistent revenue, there is usually a reason — and it's almost always inside your flows, segmentation, or post-purchase structure.
+            if your email system is not generating consistent revenue, there is usually a reason and it's almost always inside your flows, segmentation, or post-purchase structure.
           </p>
           <p style={{ color: "var(--text-soft)", fontSize: "0.84rem", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75 }}>
             we review that with you directly inside your klaviyo account and show you exactly what is working, what is not, and what needs to change first.
@@ -207,12 +206,12 @@ export default function Contact() {
                       the fastest way to get clarity. we'll walk through your klaviyo account live, identify gaps, and map out opportunities in real time.
                     </p>
                     <a
-                      href="https://calendly.com"
+                      href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
                       target="_blank"
                       rel="noreferrer"
                       style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.55rem 1.1rem", fontSize: "0.74rem", fontWeight: 600, textDecoration: "none" }}
                     >
-                      <PhoneCall size={11} /> book your free audit →
+                      <PhoneCall size={11} /> book your free audit
                     </a>
                   </div>
                 </div>
@@ -248,7 +247,7 @@ export default function Contact() {
               {/* Trust note */}
               <div style={{ background: "var(--bg-2)", border: "1px dashed var(--border)", borderRadius: "var(--radius)", padding: "1.1rem" }}>
                 <p style={{ fontSize: "0.74rem", color: "var(--text-soft)", lineHeight: 1.7, fontStyle: "italic" }}>
-                  No pressure. No obligation. Just clarity on what your backend is doing — and what it should be doing better.
+                  No pressure. No obligation. Just clarity on what your backend is doing and what it should be doing better.
                 </p>
               </div>
 
@@ -267,7 +266,7 @@ export default function Contact() {
                     <p style={{ color: "var(--text-muted)", fontSize: "0.84rem", lineHeight: 1.75, maxWidth: "340px", margin: "0 auto 1.5rem" }}>
                       thanks for reaching out. we'll review your details and be in touch within 24–48 hours.
                     </p>
-                    <a href="https://calendly.com" target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.72rem 1.4rem", fontSize: "0.8rem", fontWeight: 600, textDecoration: "none" }}>
+                    <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.72rem 1.4rem", fontSize: "0.8rem", fontWeight: 600, textDecoration: "none" }}>
                       <PhoneCall size={13} /> also book a free audit call →
                     </a>
                   </motion.div>
@@ -334,7 +333,7 @@ export default function Contact() {
                       {error && (
                         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)", borderRadius: "10px", padding: "0.75rem 1rem", marginBottom: "1rem" }}>
                           <AlertCircle size={14} style={{ color: "#F87171", flexShrink: 0 }} />
-                          <span style={{ fontSize: "0.76rem", color: "#B91C1C" }}>something went wrong. please email us directly at hello@yourdomain.com</span>
+                          <span style={{ fontSize: "0.76rem", color: "#B91C1C" }}>something went wrong. please email us directly at kinza@launchbackend.online</span>
                         </div>
                       )}
 
