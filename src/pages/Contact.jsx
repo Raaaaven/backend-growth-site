@@ -156,7 +156,7 @@ export default function Contact() {
       `}</style>
 
       {/* ─── Netlify invisible form (required at build time) ─── */}
-      <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <form name="contact" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="name" />
         <input type="email" name="email" />
         <input type="text" name="brand" />

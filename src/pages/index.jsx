@@ -1215,7 +1215,7 @@ const Quiz = () => {
                     href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
                     className="btn-primary"
                     style={{ fontSize: "0.82rem", width: "100%", justifyContent: "center" }}
-                    >
+                  >
                     <PhoneCall size={13} /> Book Your Free Backend Audit
                   </a>
                 </motion.div>
@@ -1539,8 +1539,8 @@ const WhatHappensNext = () => {
             }}>
               a real time breakdown of your revenue leaks, clear gaps, practical fixes, and a tailored plan to capture what you're currently missing
             </p>
-            
-             <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
+
+            <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
               className="btn-primary"
               style={{ fontSize: "0.84rem" }}
             >
@@ -1645,7 +1645,7 @@ const PricingContext = () => {
     setSending(true);
 
     const formData = new FormData();
-    formData.append("form-name", "contact");
+    formData.append("form-name", "pricing-enquiry"); 
     formData.append("name", nameVal.trim());
     formData.append("business", businessVal.trim());
     formData.append("email", emailVal.trim());
@@ -1664,8 +1664,7 @@ const PricingContext = () => {
       <Bridge from="var(--dark)" to="var(--dark-2)" />
 
       {/* Hidden form for Netlify to detect at build time */}
-      <form name="contact" data-netlify="true" hidden>
-        <input type="hidden" name="form-name" value="contact" />
+      <form name="pricing-enquiry" netlify hidden>
         <input name="name" />
         <input name="business" />
         <input name="email" />
@@ -1946,14 +1945,7 @@ const SocialProof = () => {
     </>
   );
 };
-<form name="contact" netlify netlify-honeypot="bot-field" hidden>
-  <input type="text" name="name" />
-  <input type="email" name="email" />
-  <input type="text" name="brand" />
-  <input type="text" name="website" />
-  <select name="service"></select>
-  <textarea name="message"></textarea>
-</form>
+
 
 /* ============================================================
    PAGE EXPORT
