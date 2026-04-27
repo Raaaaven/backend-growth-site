@@ -70,9 +70,8 @@ export default function Footer() {
                 {
                   heading: "Company",
                   links: [
-                    { label: "About",     href: "/about" },
-                    { label: "Portfolio", href: "/portfolio" },
-                    { label: "Contact",   href: "/contact" },
+                    { label: "home",     href: "/" },
+                    { label: "contact",   href: "/contact" },
                   ],
                 },
               ].map(({ heading, links }) => (

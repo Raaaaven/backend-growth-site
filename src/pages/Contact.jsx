@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PhoneCall, Mail, CheckCircle, AlertCircle, Clock, Send } from "lucide-react";
+import { PhoneCall, Mail, CheckCircle, AlertCircle, Clock, Send, ArrowRight } from "lucide-react";
 
 /* ──────────────────────────────────────────────
    FORM SUBMISSIONS → YOUR PAID EMAIL (Netlify):
@@ -25,6 +25,26 @@ const SERVICES = [
   "other",
 ];
 
+const STATS = [
+  { value: "30–50%", label: "of ecom revenue should come from email" },
+  { value: "48hrs", label: "average response time" },
+  { value: "100%", label: "done-for-you, we work inside your klaviyo" },
+];
+
+const FAQS = [
+  {
+    q: "do you work with brands on other ESPs?",
+    a: "we specialise in klaviyo. if you're on another platform, we can migrate you as part of onboarding.",
+  },
+  {
+    q: "what size brands do you work with?",
+    a: "mostly 6–8 figure DTC brands with an existing list. if you're earlier stage, the audit call is still worth it.",
+  },
+  {
+    q: "how long until we see results?",
+    a: "most brands see meaningful revenue lift within the first 30 days after flows are live.",
+  },
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -34,6 +54,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -149,9 +170,44 @@ export default function Contact() {
           align-items: start;
         }
 
+        .sidebar-sticky {
+          position: sticky;
+          top: 2rem;
+        }
+
+        .faq-item {
+          border-bottom: 1px solid var(--border);
+          padding: 0.85rem 0;
+          cursor: pointer;
+        }
+        .faq-item:last-child { border-bottom: none; }
+
+        .faq-q {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: var(--text);
+          gap: 0.5rem;
+        }
+
+        .faq-a {
+          font-size: 0.72rem;
+          color: var(--text-muted);
+          line-height: 1.7;
+          margin-top: 0.5rem;
+        }
+
+        .stat-card {
+          text-align: center;
+          padding: 1rem 0.5rem;
+        }
+
         @media (max-width: 820px) {
           .contact-layout { grid-template-columns: 1fr !important; }
           .form-row { grid-template-columns: 1fr !important; }
+          .sidebar-sticky { position: static !important; }
         }
       `}</style>
 
@@ -167,7 +223,7 @@ export default function Contact() {
 
       {/* ─── Hero ─── */}
       <section style={{
-        padding: "7rem 1.5rem 4rem",
+        padding: "7rem 1.5rem 1rem",
         background: "linear-gradient(180deg, var(--bg-3) 0%, var(--bg) 100%)",
         textAlign: "center",
         position: "relative", overflow: "hidden",
@@ -177,54 +233,47 @@ export default function Contact() {
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 3.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em", marginBottom: "1.1rem" }}>
             let's talk about your<br /><em>backend revenue</em>
           </h1>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", maxWidth: "500px", margin: "0 auto 0.75rem", lineHeight: 1.8 }}>
+          <p style={{ color: "var(--text-soft)", fontSize: "0.88rem", maxWidth: "500px", margin: "0 auto 0.75rem", lineHeight: 1.8 }}>
             if your email system is not generating consistent revenue, there is usually a reason and it's almost always inside your flows, segmentation, or post-purchase structure.
-          </p>
-          <p style={{ color: "var(--text-soft)", fontSize: "0.84rem", maxWidth: "480px", margin: "0 auto", lineHeight: 1.75 }}>
             we review that with you directly inside your klaviyo account and show you exactly what is working, what is not, and what needs to change first.
           </p>
+          <div>
+            <a
+              href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.98rem 1.4rem", fontSize: "0.84rem", fontWeight: 600, textDecoration: "none", marginTop: "0.22rem", marginBottom: "0.75rem" }}
+            >
+              <PhoneCall size={11} /> book your free audit
+            </a>
+            <p style={{ fontSize: "0.74rem", color: "var(--text-muted)", lineHeight: 1.65, marginBottom: "0.75rem", textTransform: "lowercase" }}>
+              Fastest way to get clarity. We review your Klaviyo live, find gaps, and spot opportunities.
+            </p>
+          </div>
         </motion.div>
       </section>
 
       {/* ─── Main ─── */}
-      <section style={{ padding: "3rem 1.5rem 7rem", background: "var(--bg)" }}>
+      <section style={{ padding: "1rem 1.5rem 7rem", background: "var(--bg)" }}>
         <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
           <div className="contact-layout">
 
             {/* ── Left sidebar ── */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.15 }}>
-
-              {/* Book a live audit */}
-              <div style={{ background: "#fff", border: "1px solid var(--border)", borderLeft: "3px solid var(--accent)", borderRadius: "var(--radius)", padding: "1.5rem", marginBottom: "1rem" }}>
-                <div style={{ display: "flex", gap: "0.65rem", alignItems: "flex-start" }}>
-                  <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "var(--accent-light)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent)", flexShrink: 0 }}>
-                    <PhoneCall size={15} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--text)", marginBottom: "0.3rem" }}>book a live audit</div>
-                    <p style={{ fontSize: "0.74rem", color: "var(--text-muted)", lineHeight: 1.65, marginBottom: "0.75rem" }}>
-                      the fastest way to get clarity. we'll walk through your klaviyo account live, identify gaps, and map out opportunities in real time.
-                    </p>
-                    <a
-                      href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.55rem 1.1rem", fontSize: "0.74rem", fontWeight: 600, textDecoration: "none" }}
-                    >
-                      <PhoneCall size={11} /> book your free audit
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <motion.div
+              className="sidebar-sticky"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.15 }}
+            >
 
               {/* Email */}
-              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem", marginBottom: "1rem" }}>
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderLeft: "3px solid var(--accent)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
                 <div style={{ display: "flex", gap: "0.65rem", alignItems: "center" }}>
                   <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: "rgba(142,193,222,0.15)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent-3)", flexShrink: 0 }}>
-                    <Mail size={13} />
+                    <Mail size={15} />
                   </div>
                   <div>
-                    <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.1rem" }}>email us directly</div>
+                    <div style={{ fontSize: "0.72rem", fontWeight: 900, color: "var(--text)", marginBottom: "0.1rem" }}>email us directly</div>
                     <a href="mailto:kinza@launchbackend.online" style={{ fontSize: "0.72rem", color: "var(--accent)", textDecoration: "none" }}>kinza@launchbackend.online</a>
                     <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", marginTop: "0.2rem" }}>we typically respond within 24–48 hours.</div>
                   </div>
@@ -232,24 +281,45 @@ export default function Contact() {
               </div>
 
               {/* Response time */}
-              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem", marginBottom: "1rem" }}>
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
                 <div style={{ display: "flex", gap: "0.65rem", alignItems: "center" }}>
                   <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: "rgba(206,181,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent-2)", flexShrink: 0 }}>
-                    <Clock size={13} />
+                    <Clock size={15} />
                   </div>
                   <div>
-                    <div style={{ fontSize: "0.72rem", fontWeight: 600, color: "var(--text)", marginBottom: "0.1rem" }}>response time</div>
+                    <div style={{ fontSize: "0.72rem", fontWeight: 900, color: "var(--text)", marginBottom: "0.1rem" }}>response time</div>
                     <div style={{ fontSize: "0.72rem", color: "var(--text-muted)" }}>within 24–48 hours</div>
                   </div>
                 </div>
               </div>
 
-              {/* Trust note */}
-              <div style={{ background: "var(--bg-2)", border: "1px dashed var(--border)", borderRadius: "var(--radius)", padding: "1.1rem" }}>
-                <p style={{ fontSize: "0.74rem", color: "var(--text-soft)", lineHeight: 1.7, fontStyle: "italic" }}>
-                  No pressure. No obligation. Just clarity on what your backend is doing and what it should be doing better.
-                </p>
+              {/* Stats */}
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
+                <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--text)", marginBottom: "1rem" }}>by the numbers</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                  {STATS.map((s, i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                      <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "var(--accent)", lineHeight: 1.2, minWidth: "60px" }}>{s.value}</div>
+                      <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", lineHeight: 1.55, paddingTop: "0.1rem" }}>{s.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
+
+              {/* FAQ */}
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
+                <div style={{ fontSize: "0.72rem", fontWeight: 900, color: "var(--text)", marginBottom: "0.75rem" }}>quick answers</div>
+                {FAQS.map((faq, i) => (
+                  <div key={i} className="faq-item" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                    <div className="faq-q">
+                      <span>{faq.q}</span>
+                      <ArrowRight size={12} style={{ flexShrink: 0, transform: openFaq === i ? "rotate(90deg)" : "none", transition: "transform 0.2s", color: "var(--accent)" }} />
+                    </div>
+                    {openFaq === i && <div className="faq-a">{faq.a}</div>}
+                  </div>
+                ))}
+              </div>
+
 
             </motion.div>
 
@@ -277,7 +347,6 @@ export default function Contact() {
                       method="POST"
                       data-netlify="true"
                       onSubmit={handleSubmit}
-
                       style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "20px", padding: "2rem", boxShadow: "var(--shadow)" }}
                     >
                       <input type="hidden" name="form-name" value="contact" />
