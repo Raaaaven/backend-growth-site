@@ -1,11 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import {
   PhoneCall, ArrowRight, ChevronDown, ChevronUp,
   BarChart3, Repeat2, Target, Mail, Layers, Zap, TrendingUp,
   CheckCircle, Clock, Shield, Star
 } from "lucide-react";
 
+function useScrollToHash() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#audit") {
+      const el = document.getElementById("audit");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location.hash]);
+}
 /* ============================================================
    GLOBAL STYLES — Poppins, all lowercase copy, dark palette
    ============================================================ */
@@ -1951,6 +1964,8 @@ const SocialProof = () => {
    PAGE EXPORT
    ============================================================ */
 export default function Home() {
+  useScrollToHash();
+  
   return (
     <>
       <GlobalStyles />

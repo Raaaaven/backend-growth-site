@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const NAV_LINKS = [
   { label: "home", href: "/" },
   { label: "contact", href: "/contact" },
+  {  label: "find your leak", href: "/#audit" },
 ];
 
 export default function Header() {

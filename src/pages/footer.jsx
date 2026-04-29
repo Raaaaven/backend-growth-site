@@ -72,6 +72,7 @@ export default function Footer() {
                   links: [
                     { label: "home",     href: "/" },
                     { label: "contact",   href: "/contact" },
+                    { label: "find your leak", href: "/#audit"},
                   ],
                 },
               ].map(({ heading, links }) => (
