@@ -26,26 +26,31 @@ export default function Header() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
         :root {
-          --accent:        #80A8FF;
-          --accent-2:      #CEB5FF;
-          --accent-3:      #8EC1DE;
-          --accent-soft:   #D3D3FF;
-          --accent-light:  rgba(128,168,255,0.12);
-          --accent-border: rgba(128,168,255,0.35);
-          --bg:            #F5F6FF;
-          --bg-2:          #EDEEFF;
-          --bg-3:          #E6E8FF;
-          --text:          #1A1B2E;
-          --text-muted:    #6B7280;
-          --text-soft:     #4B5268;
-          --border:        rgba(128,168,255,0.18);
-          --shadow:        0 2px 20px rgba(128,168,255,0.15);
+          --orange:        #FF6B35;
+          --pink:          #FF2D78;
+          --cyan:          #00C8E0;
+
+          --accent:        #FF2D78;
+          --accent-2:      #FF6B35;
+          --accent-3:      #00C8E0;
+          --accent-soft:   rgba(255,45,120,0.08);
+          --accent-light:  rgba(255,45,120,0.10);
+          --accent-border: rgba(255,45,120,0.28);
+
+          --bg:            #FFFFFF;
+          --bg-2:          #FFF6F9;
+          --bg-3:          #FFF0F4;
+          --text:          #1A1020;
+          --text-muted:    #6B6070;
+          --text-soft:     #4B4058;
+          --border:        rgba(26,16,32,0.10);
+          --shadow:        0 2px 20px rgba(255,45,120,0.08);
           --radius:        14px;
           --font-sans:     'DM Sans', system-ui, sans-serif;
-          --font-display:  'Instrument Serif', Georgia, serif;
+          --font-display:  'DM Sans', system-ui, sans-serif;
         }
 
         .nav-desktop-links {
@@ -68,7 +73,7 @@ export default function Header() {
           z-index: 1100;
           position: relative;
         }
-        .hamburger-btn:hover { background: rgba(128,168,255,0.1); }
+        .hamburger-btn:hover { background: rgba(255,45,120,0.08); }
 
         @media (max-width: 640px) {
           .nav-desktop-links { display: none !important; }
@@ -79,7 +84,7 @@ export default function Header() {
       <header style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
         padding: scrolled ? "0.6rem 1.5rem" : "1rem 1.5rem",
-        background: scrolled ? "rgba(245,246,255,0.92)" : "transparent",
+        background: scrolled ? "rgba(255,255,255,0.92)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid var(--border)" : "none",
         boxShadow: scrolled ? "var(--shadow)" : "none",
@@ -88,30 +93,33 @@ export default function Header() {
         fontFamily: "var(--font-sans)",
       }}>
         {/* Logo */}
-        <a href="/" style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--text)", textDecoration: "none" }}>
-          Launch<span style={{ color: "var(--accent)" }}>Backend</span>
+        <a href="/" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
+          <img src="/assets/logoLB.jpg" alt="LaunchBackend logo" style={{ width: "50px", height: "50px", marginRight: "0.75rem" }} />
+          <span style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--text)" }}>
+            launch<span style={{ color: "var(--pink)" }}>backend</span>
+          </span>
         </a>
 
         {/* Desktop nav links */}
         <nav className="nav-desktop-links">
-  {NAV_LINKS.map(item => (
-    <a
-      key={item.label}
-      href={item.href}
-      style={{
-        color: "var(--text-muted)",
-        fontSize: "1rem",
-        fontWeight: 500,
-        textDecoration: "none",
-        transition: "color 0.2s"
-      }}
-      onMouseEnter={e => e.target.style.color = "var(--text)"}
-      onMouseLeave={e => e.target.style.color = "var(--text-muted)"}
-    >
-      {item.label}
-    </a>
-  ))}
-</nav>
+          {NAV_LINKS.map(item => (
+            <a
+              key={item.label}
+              href={item.href}
+              style={{
+                color: "var(--text-muted)",
+                fontSize: "1rem",
+                fontWeight: 500,
+                textDecoration: "none",
+                transition: "color 0.2s"
+              }}
+              onMouseEnter={e => e.target.style.color = "var(--text)"}
+              onMouseLeave={e => e.target.style.color = "var(--text-muted)"}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
 
         {/* Desktop CTA */}
         <a
@@ -119,13 +127,13 @@ export default function Header() {
           className="nav-desktop-links"
           style={{
             display: "inline-flex", alignItems: "center", gap: "0.4rem",
-            background: "var(--accent)", color: "#fff",
+            background: "var(--pink)", color: "#fff",
             fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "1rem",
             padding: "0.65rem 1.3rem", borderRadius: "100px", border: "none",
             cursor: "pointer", textDecoration: "none", whiteSpace: "nowrap",
             transition: "transform 0.2s, box-shadow 0.2s",
           }}
-          onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(128,168,255,0.45)"; }}
+          onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(255,45,120,0.45)"; }}
           onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
         >
           <PhoneCall size={12} /> Book a Call
@@ -151,7 +159,7 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               style={{
                 position: "fixed", inset: 0, zIndex: 1001,
-                background: "rgba(26,27,46,0.4)",
+                background: "rgba(26,16,32,0.4)",
                 backdropFilter: "blur(4px)",
               }}
             />
@@ -203,7 +211,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
-                    background: "var(--accent)", color: "#fff",
+                    background: "var(--pink)", color: "#fff",
                     fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "0.88rem",
                     padding: "0.85rem 1.5rem", borderRadius: "100px",
                     textDecoration: "none", width: "100%",

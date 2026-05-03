@@ -2,19 +2,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PhoneCall, Mail, CheckCircle, AlertCircle, Clock, Send, ArrowRight } from "lucide-react";
 
-/* ──────────────────────────────────────────────
-   FORM SUBMISSIONS → YOUR PAID EMAIL (Netlify):
-   ─────────────────────────────────────────────
-   1. Deploy to Netlify (not Hostinger — Netlify Forms
-      only works on Netlify hosting).
-   2. In Netlify Dashboard → Your Site → Forms
-      → click "contact" form → "Form notifications"
-      → "Add notification" → "Email notification"
-      → Enter your Hostinger paid email address.
-   3. Every submission will now arrive in your inbox.
-      No backend, no API keys needed.
-   ─────────────────────────────────────────────── */
-
 const SERVICES = [
   "full email program management",
   "klaviyo setup & migration",
@@ -114,28 +101,33 @@ export default function Contact() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --accent:        #80A8FF;
-          --accent-2:      #CEB5FF;
-          --accent-3:      #8EC1DE;
-          --accent-soft:   #D3D3FF;
-          --accent-light:  rgba(128,168,255,0.12);
-          --accent-border: rgba(128,168,255,0.35);
-          --bg:            #F5F6FF;
-          --bg-2:          #EDEEFF;
-          --bg-3:          #E6E8FF;
-          --text:          #1A1B2E;
-          --text-muted:    #6B7280;
-          --text-soft:     #4B5268;
-          --border:        rgba(128,168,255,0.18);
-          --shadow:        0 2px 20px rgba(128,168,255,0.15);
+          --orange:        #FF6B35;
+          --pink:          #FF2D78;
+          --cyan:          #00C8E0;
+
+          --accent:        #FF2D78;
+          --accent-2:      #FF6B35;
+          --accent-3:      #00C8E0;
+          --accent-soft:   rgba(255,45,120,0.08);
+          --accent-light:  rgba(255,45,120,0.10);
+          --accent-border: rgba(255,45,120,0.28);
+
+          --bg:            #FFFFFF;
+          --bg-2:          #FFF6F9;
+          --bg-3:          #FFF0F4;
+          --text:          #1A1020;
+          --text-muted:    #6B6070;
+          --text-soft:     #4B4058;
+          --border:        rgba(26,16,32,0.10);
+          --shadow:        0 2px 20px rgba(255,45,120,0.08);
           --radius:        14px;
-          --font-sans:     'Poppins', system-ui, sans-serif;
-          --font-display:  'Poppins', system-ui, sans-serif;
+          --font-sans:     'DM Sans', system-ui, sans-serif;
+          --font-display:  'DM Sans', system-ui, sans-serif;
         }
 
         html { scroll-behavior: smooth; }
@@ -146,15 +138,15 @@ export default function Contact() {
           -webkit-font-smoothing: antialiased;
         }
 
-        ::selection { background: var(--accent); color: #fff; }
+        ::selection { background: var(--pink); color: #fff; }
 
         input:focus, textarea:focus, select:focus {
-          border-color: var(--accent) !important;
-          box-shadow: 0 0 0 3px rgba(128,168,255,0.15) !important;
+          border-color: var(--pink) !important;
+          box-shadow: 0 0 0 3px rgba(255,45,120,0.12) !important;
         }
 
         input::placeholder, textarea::placeholder {
-          color: #A0A3B1;
+          color: #B0A0B8;
         }
 
         .form-row {
@@ -228,10 +220,10 @@ export default function Contact() {
         textAlign: "center",
         position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: "500px", height: "300px", background: "radial-gradient(ellipse, rgba(142,193,222,0.2) 0%, transparent 70%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: "500px", height: "300px", background: "radial-gradient(ellipse, rgba(255,107,53,0.10) 0%, transparent 70%)", pointerEvents: "none" }} />
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 3.6rem)", lineHeight: 1.1, letterSpacing: "-0.025em", marginBottom: "1.1rem" }}>
-            let's talk about your<br /><em>backend revenue</em>
+            let's talk about your<br /><em style={{ color: "var(--orange)", fontStyle: "italic" }}>backend revenue</em>
           </h1>
           <p style={{ color: "var(--text-soft)", fontSize: "0.88rem", maxWidth: "500px", margin: "0 auto 0.75rem", lineHeight: 1.8 }}>
             if your email system is not generating consistent revenue, there is usually a reason and it's almost always inside your flows, segmentation, or post-purchase structure.
@@ -242,7 +234,7 @@ export default function Contact() {
               href="https://calendly.com/kinzaqasim789/strategy-call-60-min"
               target="_blank"
               rel="noreferrer"
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.98rem 1.4rem", fontSize: "0.84rem", fontWeight: 600, textDecoration: "none", marginTop: "0.22rem", marginBottom: "0.75rem" }}
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", background: "var(--pink)", color: "#fff", borderRadius: "100px", padding: "0.98rem 1.4rem", fontSize: "0.84rem", fontWeight: 600, textDecoration: "none", marginTop: "0.22rem", marginBottom: "0.75rem", transition: "transform 0.2s, box-shadow 0.2s" }}
             >
               <PhoneCall size={11} /> book your free audit
             </a>
@@ -267,23 +259,23 @@ export default function Contact() {
             >
 
               {/* Email */}
-              <div style={{ background: "#fff", border: "1px solid var(--border)", borderLeft: "3px solid var(--accent)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderLeft: "3px solid var(--cyan)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem", boxShadow: "var(--shadow)" }}>
                 <div style={{ display: "flex", gap: "0.65rem", alignItems: "center" }}>
-                  <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: "rgba(142,193,222,0.15)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent-3)", flexShrink: 0 }}>
+                  <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: "rgba(0,200,224,0.10)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--cyan)", flexShrink: 0 }}>
                     <Mail size={15} />
                   </div>
                   <div>
                     <div style={{ fontSize: "0.72rem", fontWeight: 900, color: "var(--text)", marginBottom: "0.1rem" }}>email us directly</div>
-                    <a href="mailto:kinza@launchbackend.online" style={{ fontSize: "0.72rem", color: "var(--accent)", textDecoration: "none" }}>kinza@launchbackend.online</a>
+                    <a href="mailto:kinza@launchbackend.online" style={{ fontSize: "0.72rem", color: "var(--pink)", textDecoration: "none" }}>kinza@launchbackend.online</a>
                     <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", marginTop: "0.2rem" }}>we typically respond within 24–48 hours.</div>
                   </div>
                 </div>
               </div>
 
               {/* Response time */}
-              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderLeft: "3px solid var(--orange)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem", boxShadow: "var(--shadow)" }}>
                 <div style={{ display: "flex", gap: "0.65rem", alignItems: "center" }}>
-                  <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: "rgba(206,181,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent-2)", flexShrink: 0 }}>
+                  <div style={{ width: "32px", height: "32px", borderRadius: "8px", background: "rgba(255,107,53,0.10)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--orange)", flexShrink: 0 }}>
                     <Clock size={15} />
                   </div>
                   <div>
@@ -294,32 +286,37 @@ export default function Contact() {
               </div>
 
               {/* Stats */}
-              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem", boxShadow: "var(--shadow)" }}>
                 <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "var(--text)", marginBottom: "1rem" }}>by the numbers</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-                  {STATS.map((s, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-                      <div style={{ fontSize: "0.88rem", fontWeight: 700, color: "var(--accent)", lineHeight: 1.2, minWidth: "60px" }}>{s.value}</div>
-                      <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", lineHeight: 1.55, paddingTop: "0.1rem" }}>{s.label}</div>
-                    </div>
-                  ))}
+                  {STATS.map((s, i) => {
+                    const colors = ["var(--orange)", "var(--pink)", "var(--cyan)"];
+                    return (
+                      <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                        <div style={{ fontSize: "0.88rem", fontWeight: 700, color: colors[i], lineHeight: 1.2, minWidth: "60px" }}>{s.value}</div>
+                        <div style={{ fontSize: "0.68rem", color: "var(--text-muted)", lineHeight: 1.55, paddingTop: "0.1rem" }}>{s.label}</div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
               {/* FAQ */}
-              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem" }}>
+              <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem", boxShadow: "var(--shadow)" }}>
                 <div style={{ fontSize: "0.72rem", fontWeight: 900, color: "var(--text)", marginBottom: "0.75rem" }}>quick answers</div>
-                {FAQS.map((faq, i) => (
-                  <div key={i} className="faq-item" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                    <div className="faq-q">
-                      <span>{faq.q}</span>
-                      <ArrowRight size={12} style={{ flexShrink: 0, transform: openFaq === i ? "rotate(90deg)" : "none", transition: "transform 0.2s", color: "var(--accent)" }} />
+                {FAQS.map((faq, i) => {
+                  const chevronColors = ["var(--pink)", "var(--orange)", "var(--cyan)"];
+                  return (
+                    <div key={i} className="faq-item" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                      <div className="faq-q">
+                        <span>{faq.q}</span>
+                        <ArrowRight size={12} style={{ flexShrink: 0, transform: openFaq === i ? "rotate(90deg)" : "none", transition: "transform 0.2s", color: chevronColors[i] }} />
+                      </div>
+                      {openFaq === i && <div className="faq-a">{faq.a}</div>}
                     </div>
-                    {openFaq === i && <div className="faq-a">{faq.a}</div>}
-                  </div>
-                ))}
+                  );
+                })}
               </div>
-
 
             </motion.div>
 
@@ -328,15 +325,15 @@ export default function Contact() {
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div key="success" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }}
-                    style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "20px", padding: "3rem 2rem", textAlign: "center" }}>
+                    style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "20px", padding: "3rem 2rem", textAlign: "center", boxShadow: "var(--shadow)" }}>
                     <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5 }}>
-                      <CheckCircle size={48} style={{ color: "var(--accent-3)", margin: "0 auto 1.25rem" }} />
+                      <CheckCircle size={48} style={{ color: "var(--cyan)", margin: "0 auto 1.25rem" }} />
                     </motion.div>
                     <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", color: "var(--text)", marginBottom: "0.75rem" }}>message received!</h2>
                     <p style={{ color: "var(--text-muted)", fontSize: "0.84rem", lineHeight: 1.75, maxWidth: "340px", margin: "0 auto 1.5rem" }}>
                       thanks for reaching out. we'll review your details and be in touch within 24–48 hours.
                     </p>
-                    <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", background: "var(--accent)", color: "#fff", borderRadius: "100px", padding: "0.72rem 1.4rem", fontSize: "0.8rem", fontWeight: 600, textDecoration: "none" }}>
+                    <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", background: "var(--pink)", color: "#fff", borderRadius: "100px", padding: "0.72rem 1.4rem", fontSize: "0.8rem", fontWeight: 600, textDecoration: "none" }}>
                       <PhoneCall size={13} /> also book a free audit call
                     </a>
                   </motion.div>
@@ -404,9 +401,9 @@ export default function Contact() {
                       </div>
 
                       {error && (
-                        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", background: "rgba(248,113,113,0.1)", border: "1px solid rgba(248,113,113,0.3)", borderRadius: "10px", padding: "0.75rem 1rem", marginBottom: "1rem" }}>
-                          <AlertCircle size={14} style={{ color: "#F87171", flexShrink: 0 }} />
-                          <span style={{ fontSize: "0.76rem", color: "#B91C1C" }}>something went wrong. please email us directly at kinza@launchbackend.online</span>
+                        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", background: "rgba(255,45,120,0.06)", border: "1px solid rgba(255,45,120,0.28)", borderRadius: "10px", padding: "0.75rem 1rem", marginBottom: "1rem" }}>
+                          <AlertCircle size={14} style={{ color: "var(--pink)", flexShrink: 0 }} />
+                          <span style={{ fontSize: "0.76rem", color: "var(--pink)" }}>something went wrong. please email us directly at kinza@launchbackend.online</span>
                         </div>
                       )}
 
@@ -415,14 +412,14 @@ export default function Contact() {
                         disabled={loading}
                         style={{
                           display: "flex", alignItems: "center", justifyContent: "center", gap: "0.45rem",
-                          width: "100%", background: loading ? "var(--text-muted)" : "var(--accent)",
+                          width: "100%", background: loading ? "var(--text-muted)" : "var(--pink)",
                           color: "#fff", border: "none", borderRadius: "100px",
                           padding: "0.88rem 1.5rem", fontSize: "0.85rem", fontWeight: 600,
                           cursor: loading ? "not-allowed" : "pointer",
                           transition: "transform 0.2s, box-shadow 0.2s",
                           fontFamily: "var(--font-sans)",
                         }}
-                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 26px rgba(128,168,255,0.45)"; } }}
+                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 26px rgba(255,45,120,0.45)"; } }}
                         onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
                       >
                         {loading ? "sending..." : <><Send size={14} /> send message</>}

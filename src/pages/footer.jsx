@@ -20,7 +20,7 @@ export default function Footer() {
           flex-wrap: wrap;
         }
         .footer-bottom-row {
-          border-top: 1px solid var(--border);
+          border-top: 1px solid rgba(255,255,255,0.12);
           padding-top: 1rem;
           display: flex;
           justify-content: space-between;
@@ -30,13 +30,23 @@ export default function Footer() {
         }
         .footer-btn {
           display: inline-flex; align-items: center; gap: 0.4rem;
-          background: var(--accent); color: #fff;
-          font-family: var(--font-sans); font-weight: 600; font-size: 0.8rem;
+          background: #FF2D78; color: #fff;
+          font-family: var(--font); font-weight: 600; font-size: 0.8rem;
           padding: 0.65rem 1.3rem; border-radius: 100px; border: none;
           cursor: pointer; text-decoration: none; white-space: nowrap;
           transition: transform 0.2s, box-shadow 0.2s;
         }
-        .footer-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(128,168,255,0.4); }
+        .footer-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,45,120,0.4); }
+        .footer-link { display: block; color: rgba(255,255,255,0.65); font-size: 0.73rem; text-decoration: none; margin-bottom: 0.35rem; transition: color 0.2s; }
+        .footer-link:hover { color: #FF2D78; }
+        .footer-col-heading {
+          font-size: 0.73rem;
+          font-weight: 700;
+          letter-spacing: 0.07em;
+          text-transform: lowercase;
+          color: #FF6B35;
+          margin-bottom: 0.72rem;
+        }
 
         @media (max-width: 640px) {
           .footer-top-inner  { flex-direction: column !important; }
@@ -46,21 +56,25 @@ export default function Footer() {
       `}</style>
 
       <footer style={{
-        background: "var(--bg-2)",
-        borderTop: "1px solid var(--border)",
+        background: "#1A1020",
+        borderTop: "1px solid rgba(255,255,255,0.07)",
         padding: "2.75rem 1.5rem",
-        fontFamily: "var(--font-sans)",
+        fontFamily: "var(--font)",
+        color: "#fff",
       }}>
         <div style={{ maxWidth: "1040px", margin: "0 auto" }}>
           <div className="footer-top-inner">
 
             {/* Brand */}
             <div>
-              <div style={{ fontSize: "0.92rem", fontWeight: 700, marginBottom: "0.5rem", color: "var(--text)" }}>
-                Launch<span style={{ color: "var(--accent)" }}>Backend</span>
-              </div>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.76rem", maxWidth: "230px", lineHeight: 1.65 }}>
-                Email marketing for e-commerce brands that want predictable, compounding revenue.
+              <a href="/" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", marginBottom: "0.85rem" }}>
+                <img src="/assets/logoLB.jpg" alt="launchbackend logo" style={{ width: "50px", height: "50px", marginRight: "0.75rem" }} />
+                <span style={{ fontSize: "1rem", fontWeight: 700, color: "#fff" }}>
+                  launch<span style={{ color: "#FF2D78" }}>backend</span>
+                </span>
+              </a>
+              <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.76rem", maxWidth: "230px", lineHeight: 1.65 }}>
+                email marketing for e-commerce brands that want predictable, compounding revenue.
               </p>
             </div>
 
@@ -68,40 +82,28 @@ export default function Footer() {
             <div className="footer-links-row">
               {[
                 {
-                  heading: "Company",
+                  heading: "company",
                   links: [
-                    { label: "home",     href: "/" },
-                    { label: "contact",   href: "/contact" },
-                    { label: "find your leak", href: "/#audit"},
+                    { label: "home",          href: "/"        },
+                    { label: "contact",        href: "/contact" },
+                    { label: "find your leak", href: "/#audit"  },
                   ],
                 },
               ].map(({ heading, links }) => (
                 <div key={heading}>
-                  <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.72rem" }}>
-                    {heading}
-                  </div>
+                  <div className="footer-col-heading">{heading}</div>
                   {links.map(({ label, href }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      style={{ display: "block", color: "var(--text-muted)", fontSize: "0.73rem", textDecoration: "none", marginBottom: "0.35rem", transition: "color 0.2s" }}
-                      onMouseEnter={e => e.target.style.color = "var(--text)"}
-                      onMouseLeave={e => e.target.style.color = "var(--text-muted)"}
-                    >
-                      {label}
-                    </a>
+                    <a key={label} href={href} className="footer-link">{label}</a>
                   ))}
                 </div>
               ))}
             </div>
 
             {/* CTA */}
-            <div>
-              <div style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: "0.72rem" }}>
-                Get Started
-              </div>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+              <div className="footer-col-heading">get started</div>
               <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" className="footer-btn">
-                <PhoneCall size={12} /> Book a Call
+                <PhoneCall size={12} /> book a call
               </a>
             </div>
 
@@ -109,21 +111,23 @@ export default function Footer() {
 
           {/* Bottom row */}
           <div className="footer-bottom-row">
-            <span style={{ color: "var(--text-muted)", fontSize: "0.68rem" }}>
-              © 2026 LaunchBackend. All rights reserved.
+            <span style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.68rem" }}>
+              © 2026 launchbackend. all rights reserved. · Run by 
+Bali Sukainah LTD, Manchester, United Kingdom
             </span>
-            <div style={{ color: "var(--text-muted)", fontSize: "0.68rem" }}>
-              Created by Masooma Qasim
+            <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.68rem" }}>
+              created by Masooma Qasim
             </div>
             <button
               onClick={up}
-              style={{ width: "28px", height: "28px", borderRadius: "50%", background: "var(--bg-3)", border: "1px solid var(--border)", color: "var(--text-muted)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all 0.2s" }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-muted)"; }}
+              style={{ width: "28px", height: "28px", borderRadius: "50%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,45,120,0.4)", color: "#FF2D78", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "#FF2D78"; e.currentTarget.style.color = "#FF2D78"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,45,120,0.4)"; e.currentTarget.style.color = "#FF2D78"; }}
             >
               <ArrowUp size={12} />
             </button>
           </div>
+
         </div>
       </footer>
     </>
