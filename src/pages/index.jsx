@@ -261,7 +261,7 @@ const Tag = ({ children, color = "var(--accent)" }) => (
 /* ============================================================
    HERO
    ============================================================ */
-   const ROTATING_WORDS = ["predictable", "compounding", "scalable", "automated", "measurable"];
+const ROTATING_WORDS = ["predictable", "compounding", "scalable", "automated", "measurable"];
 const WORD_COLORS = ["var(--orange)", "var(--cyan)"];
 
 const STICKY_DATA = [
@@ -337,69 +337,74 @@ const Hero = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const opacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
- useEffect(() => {
-  if (!ref.current) return;
-  const { width, height } = ref.current.getBoundingClientRect();
-  const isMobile = width < 768;
-  const isTablet = width >= 768 && width < 1024;
-  if (!isMobile && !isTablet) {
-    // desktop — your original manual positions
-    setStickyPos(STICKY_DATA.map(n => ({
-      ...n,
-      top:  (n.yPct / 100) * height,
-      left: (n.xPct / 100) * width,
-    })));
-    return;
-  }
+  // ── Word rotator ──
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIdx(prev => (prev + 1) % ROTATING_WORDS.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const noteW = isMobile ? 90 : 110;
-  const noteH = isMobile ? 90 : 110;
-  const fontSize = isMobile ? 8 : 9.5;
-  const gap = 10; // gap between notes
-
-  // Hard corner zones — notes only go here, never in the center
-  // Each zone: { x1, x2, y1, y2 } defines the rectangle notes can live in
-  const zones = isMobile ? [
-  { x1: 0, x2: width * 0.38,        y1: 0,            y2: height * 0.22 }, // top-left
-  { x1: width * 0.62, x2: width,    y1: 0,            y2: height * 0.22 }, // top-right
-  { x1: 0, x2: width * 0.38,        y1: height * 0.78, y2: height       }, // bottom-left
-  { x1: width * 0.62, x2: width,    y1: height * 0.78, y2: height       }, // bottom-right
-] : [
-  { x1: 0, x2: width * 0.28,        y1: 0,            y2: height * 0.5  }, // left-top
-  { x1: 0, x2: width * 0.28,        y1: height * 0.5, y2: height        }, // left-bottom
-  { x1: width * 0.72, x2: width,    y1: 0,            y2: height * 0.5  }, // right-top
-  { x1: width * 0.72, x2: width,    y1: height * 0.5, y2: height        }, // right-bottom
-];
-
-  const placed = [];
-  const result = [];
-  const notes = STICKY_DATA.filter(n => !(isMobile && n.mobile === null) && !(isTablet && n.tablet === null));
-
-  notes.forEach((n, i) => {
-    const zone = zones[i % zones.length];
-    const zoneW = zone.x2 - zone.x1;
-    const zoneH = zone.y2 - zone.y1;
-    if (zoneW < noteW || zoneH < noteH) return; // zone too small, skip
-
-    for (let attempt = 0; attempt < 60; attempt++) {
-      const left = zone.x1 + Math.random() * (zoneW - noteW);
-      const top  = zone.y1 + Math.random() * (zoneH - noteH);
-
-      const overlaps = placed.some(p =>
-        left < p.left + p.w + gap && left + noteW + gap > p.left &&
-        top  < p.top  + p.h + gap && top  + noteH + gap > p.top
-      );
-
-      if (!overlaps) {
-        placed.push({ left, top, w: noteW, h: noteH });
-        result.push({ ...n, left, top, w: noteW, h: noteH, fontSize });
-        break;
-      }
+  useEffect(() => {
+    if (!ref.current) return;
+    const { width, height } = ref.current.getBoundingClientRect();
+    const isMobile = width < 768;
+    const isTablet = width >= 768 && width < 1024;
+    if (!isMobile && !isTablet) {
+      setStickyPos(STICKY_DATA.map(n => ({
+        ...n,
+        top:  (n.yPct / 100) * height,
+        left: (n.xPct / 100) * width,
+      })));
+      return;
     }
-  });
 
-  setStickyPos(result);
-}, []);
+    const noteW = isMobile ? 90 : 110;
+    const noteH = isMobile ? 90 : 110;
+    const fontSize = isMobile ? 8 : 9.5;
+    const gap = 10;
+
+    const zones = isMobile ? [
+      { x1: 0, x2: width * 0.38,        y1: 0,            y2: height * 0.22 },
+      { x1: width * 0.62, x2: width,    y1: 0,            y2: height * 0.22 },
+      { x1: 0, x2: width * 0.38,        y1: height * 0.78, y2: height       },
+      { x1: width * 0.62, x2: width,    y1: height * 0.78, y2: height       },
+    ] : [
+      { x1: 0, x2: width * 0.28,        y1: 0,            y2: height * 0.5  },
+      { x1: 0, x2: width * 0.28,        y1: height * 0.5, y2: height        },
+      { x1: width * 0.72, x2: width,    y1: 0,            y2: height * 0.5  },
+      { x1: width * 0.72, x2: width,    y1: height * 0.5, y2: height        },
+    ];
+
+    const placed = [];
+    const result = [];
+    const notes = STICKY_DATA.filter(n => !(isMobile && n.mobile === null) && !(isTablet && n.tablet === null));
+
+    notes.forEach((n, i) => {
+      const zone = zones[i % zones.length];
+      const zoneW = zone.x2 - zone.x1;
+      const zoneH = zone.y2 - zone.y1;
+      if (zoneW < noteW || zoneH < noteH) return;
+
+      for (let attempt = 0; attempt < 60; attempt++) {
+        const left = zone.x1 + Math.random() * (zoneW - noteW);
+        const top  = zone.y1 + Math.random() * (zoneH - noteH);
+
+        const overlaps = placed.some(p =>
+          left < p.left + p.w + gap && left + noteW + gap > p.left &&
+          top  < p.top  + p.h + gap && top  + noteH + gap > p.top
+        );
+
+        if (!overlaps) {
+          placed.push({ left, top, w: noteW, h: noteH });
+          result.push({ ...n, left, top, w: noteW, h: noteH, fontSize });
+          break;
+        }
+      }
+    });
+
+    setStickyPos(result);
+  }, []);
 
   return (
     <section ref={ref} style={{ minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center", padding:"9rem 1.5rem 5rem", background:"var(--dark)", position:"relative", overflow:"hidden" }}>
@@ -446,18 +451,38 @@ const Hero = () => {
         <motion.h1 initial={{ opacity:0, y:28 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.18 }}
           style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:"clamp(2.8rem, 5vw, 4.2rem)", lineHeight:1.1, letterSpacing:"-0.02em", textAlign:"center", width:"100%", marginBottom:"1.5rem" }}>
           <span style={{ display:"block" }}>turn your email list into a</span>
-          <span className="hero-word-block" style={{ margin:"0.08em 0" }}>
+
+          {/* ── Rotating word block ── */}
+          <span style={{
+            display:"block",
+            position:"relative",
+            height:"1.2em",
+            overflow:"hidden",
+            margin:"0.08em 0",
+          }}>
             <AnimatePresence mode="wait">
-              <motion.span key={wordIdx}
+              <motion.span
+                key={wordIdx}
                 initial={{ y:"100%", opacity:0 }}
                 animate={{ y:"0%", opacity:1 }}
                 exit={{ y:"-100%", opacity:0 }}
                 transition={{ type:"spring", stiffness:60, damping:15 }}
-                style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", color: WORD_COLORS[wordIdx % 2], fontStyle:"italic", fontWeight:700 }}>
+                style={{
+                  position:"absolute",
+                  inset:0,
+                  display:"flex",
+                  alignItems:"center",
+                  justifyContent:"center",
+                  color: WORD_COLORS[wordIdx % 2],
+                  fontStyle:"italic",
+                  fontWeight:700,
+                }}
+              >
                 {ROTATING_WORDS[wordIdx]}
               </motion.span>
             </AnimatePresence>
           </span>
+
           <span style={{ display:"block" }}>revenue engine.</span>
         </motion.h1>
 
@@ -1072,7 +1097,6 @@ const WhatHappensNext = () => {
             <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" className="btn-primary" style={{ fontSize: "0.84rem" }}>
               <PhoneCall size={13} /> book your free backend audit
             </a>
-            <p style={{ color: "var(--text-muted)", fontSize: "0.68rem", marginTop: "0.6rem" }}>we log into your klaviyo, find the leaks, and map the fixes</p>
           </motion.div>
         </div>
       </section>
@@ -1132,7 +1156,7 @@ const FAQ = () => {
    PRICING CONTEXT
    ============================================================ */
 const fieldLabel = {
-  display: "block", fontSize: "0.6rem", fontWeight: 700,
+  display: "block", fontSize: "0.6rem", fontWeight: 800,
   letterSpacing: "0.07em", textTransform: "uppercase",
   color: "var(--text-muted)", marginBottom: "5px",
 };
@@ -1147,21 +1171,6 @@ const PricingContext = () => {
 
   const allFilled = nameVal.trim() && businessVal.trim() && emailVal.includes("@") && messageVal.trim();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!allFilled) return;
-    setSending(true);
-    const formData = new FormData();
-    formData.append("form-name", "pricing-enquiry");
-    formData.append("name", nameVal.trim());
-    formData.append("business", businessVal.trim());
-    formData.append("email", emailVal.trim());
-    formData.append("message", messageVal.trim());
-    try { await fetch("/", { method: "POST", body: formData }); } catch (_) { }
-    setSending(false);
-    setSent(true);
-  };
-
   return (
     <>
       <Bridge from="var(--dark)" to="var(--dark-2)" />
@@ -1169,73 +1178,16 @@ const PricingContext = () => {
         <input name="name" /><input name="business" /><input name="email" /><textarea name="message" />
       </form>
 
-      <section style={{ padding: "5rem 2rem 1rem", background: "var(--dark-2)" }}>
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div className="pricing-wrap" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
+      <section style={{ padding: "5rem 2rem 1rem", background: "var(--dark-2)", position: "relative", overflow: "hidden" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", textAlign: "center", marginBottom: "4rem" }}>
             <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <h2 style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: "clamp(1.5rem, 3vw, 2.1rem)", letterSpacing: "-0.02em", lineHeight: 1.25, marginBottom: "1.4rem" }}>
                 what it takes to turn your backend into a revenue channel
               </h2>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.83rem", lineHeight: 1.8, marginBottom: "0.85rem" }}>you could invest heavily and still end up waiting for direction.</p>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.83rem", lineHeight: 1.8, marginBottom: "0.85rem" }}>or go low cost and end up rebuilding everything later.</p>
-              <p style={{ color: "var(--text)", fontSize: "0.85rem", lineHeight: 1.8, fontWeight: 500 }}>we sit where it actually works.</p>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.83rem", lineHeight: 1.8, marginTop: "0.6rem" }}>experienced strategy, hands on execution, and a system built to generate revenue consistently, not just exist in the background.</p>
+              <p style={{ color: "var(--text-muted)", fontSize: "0.83rem", lineHeight: 1.8, marginBottom: "0.85rem" }}>you could invest heavily and still end up waiting for direction.or go low cost and end up rebuilding everything later.
+              we sit where it actually works.
+              experienced strategy, hands on execution, and a system built to generate revenue consistently, not just exist in the background.</p>
             </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
-              <div style={{ padding: "2rem 2rem 1.75rem" }}>
-                {sent ? (
-                  <div style={{ textAlign: "center", padding: "1.5rem 0" }}>
-                    {/* cyan for success/system confirmation */}
-                    <div style={{ width: "46px", height: "46px", background: "rgba(0,200,224,0.10)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1rem", color: "var(--cyan)" }}>
-                      <CheckCircle size={20} />
-                    </div>
-                    <div style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "1.05rem", marginBottom: "0.4rem" }}>message sent</div>
-                    <p style={{ color: "var(--text-muted)", fontSize: "0.76rem", lineHeight: 1.7 }}>we'll be in touch within 24 hours.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.6rem", marginBottom: "0.85rem" }}>
-                      <div>
-                        <label style={fieldLabel}>Your name</label>
-                        <input type="text" placeholder="Alex Smith" value={nameVal} onChange={e => setNameVal(e.target.value)} style={inputStyle} />
-                      </div>
-                      <div>
-                        <label style={fieldLabel}>Business name</label>
-                        <input type="text" placeholder="Acme Store" value={businessVal} onChange={e => setBusinessVal(e.target.value)} style={inputStyle} />
-                      </div>
-                    </div>
-                    <div style={{ marginBottom: "0.85rem" }}>
-                      <label style={fieldLabel}>Email address</label>
-                      <input type="email" placeholder="you@yourbrand.com" value={emailVal} onChange={e => setEmailVal(e.target.value)} style={inputStyle} />
-                    </div>
-                    <div style={{ marginBottom: "0" }}>
-                      <label style={fieldLabel}>How can we help?</label>
-                      <textarea rows={4} placeholder="Tell us about your brand, current challenges, or what you're looking to fix…" value={messageVal} onChange={e => setMessageVal(e.target.value)} style={{ ...inputStyle, resize: "none", lineHeight: 1.6 }} />
-                    </div>
-                    <div style={{ textAlign: "center", marginTop: "1.25rem" }}>
-                      {/* pink button = the one CTA */}
-                      <button type="submit" disabled={sending || !allFilled}
-                        style={{
-                          display: "inline-flex", alignItems: "center", gap: "8px",
-                          background: allFilled ? "var(--pink)" : "var(--dark-4)",
-                          color: allFilled ? "#fff" : "var(--text-muted)",
-                          border: "none", borderRadius: "100px", padding: "0 28px", height: "46px",
-                          fontFamily: "var(--font)", fontSize: "0.82rem", fontWeight: 600,
-                          cursor: allFilled ? "pointer" : "not-allowed",
-                          opacity: sending ? 0.7 : 1, transition: "all 0.2s",
-                          width: "100%", justifyContent: "center",
-                        }}>
-                        {sending ? "Sending…" : "Send message"}
-                        {!sending && <ArrowRight size={14} />}
-                      </button>
-                      <p style={{ marginTop: "9px", fontSize: "0.62rem", color: "var(--text-muted)" }}>we typically reply within 24 hours</p>
-                    </div>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-          </div>
         </div>
       </section>
       <style>{`@media (max-width: 680px) { .pricing-wrap { grid-template-columns: 1fr !important; gap: 2.5rem !important; } }`}</style>
@@ -1273,7 +1225,6 @@ const FinalCTA = () => (
               <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" className="btn-primary" style={{ fontSize: "0.9rem", padding: "1rem 2rem", display: "inline-flex", alignItems: "center" }}>
                 <PhoneCall size={15} /> secure your free audit
               </a>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.7rem", marginTop: "0.75rem" }}>no commitment · no sales pressure · just your audit</p>
             </motion.div>
           </div>
         </div>

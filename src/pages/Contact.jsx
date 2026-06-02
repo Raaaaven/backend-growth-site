@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useForm, ValidationError } from "@formspree/react";
 import { PhoneCall, Mail, CheckCircle, AlertCircle, Clock, Send, ArrowRight } from "lucide-react";
 
 const SERVICES = [
@@ -34,47 +35,8 @@ const FAQS = [
 ];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "", email: "", brand: "", website: "",
-    service: "", message: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [state, handleFormspreeSubmit] = useForm("xbdbnyyv");
   const [openFaq, setOpenFaq] = useState(null);
-
-  const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(false);
-
-    try {
-      const body = new URLSearchParams({
-        "form-name": "contact",
-        ...formData,
-      }).toString();
-
-      const res = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body,
-      });
-
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        setError(true);
-      }
-    } catch {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const inputStyle = {
     width: "100%",
@@ -203,16 +165,6 @@ export default function Contact() {
         }
       `}</style>
 
-      {/* ─── Netlify invisible form (required at build time) ─── */}
-      <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="text" name="brand" />
-        <input type="text" name="website" />
-        <select name="service"></select>
-        <textarea name="message"></textarea>
-      </form>
-
       {/* ─── Hero ─── */}
       <section style={{
         padding: "7rem 1.5rem 1rem",
@@ -257,7 +209,6 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.15 }}
             >
-
               {/* Email */}
               <div style={{ background: "#fff", border: "1px solid var(--border)", borderLeft: "3px solid var(--cyan)", borderRadius: "var(--radius)", padding: "1.25rem 1.5rem", marginBottom: "1rem", boxShadow: "var(--shadow)" }}>
                 <div style={{ display: "flex", gap: "0.65rem", alignItems: "center" }}>
@@ -317,13 +268,12 @@ export default function Contact() {
                   );
                 })}
               </div>
-
             </motion.div>
 
             {/* ── Form ── */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}>
               <AnimatePresence mode="wait">
-                {submitted ? (
+                {state.succeeded ? (
                   <motion.div key="success" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }}
                     style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "20px", padding: "3rem 2rem", textAlign: "center", boxShadow: "var(--shadow)" }}>
                     <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5 }}>
@@ -340,15 +290,9 @@ export default function Contact() {
                 ) : (
                   <motion.div key="form">
                     <form
-                      name="contact"
-                      method="POST"
-                      data-netlify="true"
-                      onSubmit={handleSubmit}
+                      onSubmit={handleFormspreeSubmit}
                       style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "20px", padding: "2rem", boxShadow: "var(--shadow)" }}
                     >
-                      <input type="hidden" name="form-name" value="contact" />
-                      <input name="bot-field" style={{ display: "none" }} />
-
                       <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", color: "var(--text)", marginBottom: "0.5rem" }}>have a general question?</h2>
                       <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
                         partnership idea, or need more info before booking? reach out below.
@@ -360,11 +304,12 @@ export default function Contact() {
                       <div className="form-row" style={{ marginBottom: "1rem" }}>
                         <div>
                           <label style={labelStyle}>full name *</label>
-                          <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="jane smith" style={inputStyle} />
+                          <input type="text" name="name" required placeholder="jane smith" style={inputStyle} />
                         </div>
                         <div>
                           <label style={labelStyle}>email address *</label>
-                          <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="jane@yourbrand.com" style={inputStyle} />
+                          <input type="email" name="email" required placeholder="jane@yourbrand.com" style={inputStyle} />
+                          <ValidationError field="email" errors={state.errors} style={{ fontSize: "0.72rem", color: "var(--pink)", marginTop: "0.3rem", display: "block" }} />
                         </div>
                       </div>
 
@@ -372,18 +317,18 @@ export default function Contact() {
                       <div className="form-row" style={{ marginBottom: "1rem" }}>
                         <div>
                           <label style={labelStyle}>brand name *</label>
-                          <input type="text" name="brand" required value={formData.brand} onChange={handleChange} placeholder="your brand" style={inputStyle} />
+                          <input type="text" name="brand" required placeholder="your brand" style={inputStyle} />
                         </div>
                         <div>
                           <label style={labelStyle}>website</label>
-                          <input type="url" name="website" value={formData.website} onChange={handleChange} placeholder="https://yourbrand.com" style={inputStyle} />
+                          <input type="url" name="website" placeholder="https://yourbrand.com" style={inputStyle} />
                         </div>
                       </div>
 
                       {/* Service */}
                       <div style={{ marginBottom: "1rem" }}>
                         <label style={labelStyle}>what do you need? *</label>
-                        <select name="service" required value={formData.service} onChange={handleChange} style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
+                        <select name="service" required style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}>
                           <option value="">select a service...</option>
                           {SERVICES.map(s => <option key={s} value={s}>{s}</option>)}
                         </select>
@@ -394,13 +339,14 @@ export default function Contact() {
                         <label style={labelStyle}>tell us about your brand & goals *</label>
                         <textarea
                           name="message" required rows={4}
-                          value={formData.message} onChange={handleChange}
                           placeholder="We're a 7-figure DTC skincare brand. We have 45K subscribers on Klaviyo but our flow revenue is under 20%. We want to fix that..."
                           style={{ ...inputStyle, resize: "vertical", minHeight: "110px", lineHeight: 1.65 }}
                         />
+                        <ValidationError field="message" errors={state.errors} style={{ fontSize: "0.72rem", color: "var(--pink)", marginTop: "0.3rem", display: "block" }} />
                       </div>
 
-                      {error && (
+                      {/* Generic error (non-field errors) */}
+                      {state.errors?.length > 0 && !state.errors.some(e => e.field) && (
                         <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", background: "rgba(255,45,120,0.06)", border: "1px solid rgba(255,45,120,0.28)", borderRadius: "10px", padding: "0.75rem 1rem", marginBottom: "1rem" }}>
                           <AlertCircle size={14} style={{ color: "var(--pink)", flexShrink: 0 }} />
                           <span style={{ fontSize: "0.76rem", color: "var(--pink)" }}>something went wrong. please email us directly at kinza@launchbackend.online</span>
@@ -409,25 +355,23 @@ export default function Contact() {
 
                       <button
                         type="submit"
-                        disabled={loading}
+                        disabled={state.submitting}
                         style={{
                           display: "flex", alignItems: "center", justifyContent: "center", gap: "0.45rem",
-                          width: "100%", background: loading ? "var(--text-muted)" : "var(--pink)",
+                          width: "100%", background: state.submitting ? "var(--text-muted)" : "var(--pink)",
                           color: "#fff", border: "none", borderRadius: "100px",
                           padding: "0.88rem 1.5rem", fontSize: "0.85rem", fontWeight: 600,
-                          cursor: loading ? "not-allowed" : "pointer",
+                          cursor: state.submitting ? "not-allowed" : "pointer",
                           transition: "transform 0.2s, box-shadow 0.2s",
                           fontFamily: "var(--font-sans)",
                         }}
-                        onMouseEnter={e => { if (!loading) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 26px rgba(255,45,120,0.45)"; } }}
+                        onMouseEnter={e => { if (!state.submitting) { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 26px rgba(255,45,120,0.45)"; } }}
                         onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
                       >
-                        {loading ? "sending..." : <><Send size={14} /> send message</>}
+                        {state.submitting ? "sending..." : <><Send size={14} /> send message</>}
                       </button>
 
-                      <p style={{ fontSize: "0.68rem", color: "var(--text-muted)", textAlign: "center", marginTop: "0.75rem" }}>
-                        no spam. no commitment. just a conversation.
-                      </p>
+                      
                     </form>
                   </motion.div>
                 )}

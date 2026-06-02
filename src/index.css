@@ -16,3 +16,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.learn-bg {
+  background-color: #111827;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.learn-bg:hover {
+  background-color: #1f2937;
+}
+
+.learn-bg-gradient {
+  background: linear-gradient(135deg, #ff2d78, #ff6b35, #00c8e0);
+  background-size: 300% 300%;
+  animation: learnGradient 8s ease infinite;
+}
+
+@keyframes learnGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
