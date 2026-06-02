@@ -84,7 +84,7 @@ export default function Header() {
       <header style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
         padding: scrolled ? "0.6rem 1.5rem" : "1rem 1.5rem",
-        background: scrolled ? "rgba(255,255,255,0.92)" : "transparent",
+        background: scrolled ? "var(--pink)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid var(--border)" : "none",
         boxShadow: scrolled ? "var(--shadow)" : "none",
@@ -93,12 +93,43 @@ export default function Header() {
         fontFamily: "var(--font-sans)",
       }}>
         {/* Logo */}
-        <a href="/" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
-          <img src="/assets/logoLB.jpg" alt="LaunchBackend logo" style={{ width: "50px", height: "50px", marginRight: "0.75rem" }} />
-          <span style={{ fontSize: "1.3rem", fontWeight: 700, color: "var(--text)" }}>
-            launch<span style={{ color: "var(--pink)" }}>backend</span>
-          </span>
-        </a>
+       <a
+  href="/"
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    textDecoration: "none",
+  }}
+>
+  <img
+    src="/assets/logoLB.png"
+    alt="LaunchBackend logo"
+    style={{
+      width: "50px",
+      height: "50px",
+      marginRight: "0.75rem",
+    }}
+  />
+
+  <span
+    style={{
+      fontSize: "1.3rem",
+      fontWeight: 700,
+      color: scrolled ? "#fff" : "#000",
+      transition: "color 0.3s ease",
+    }}
+  >
+    launch
+    <span
+      style={{
+        color: scrolled ? "#fff" : "var(--pink)",
+        transition: "color 0.3s ease",
+      }}
+    >
+      backend
+    </span>
+  </span>
+</a>
 
         {/* Desktop nav links */}
         <nav className="nav-desktop-links">
@@ -107,7 +138,7 @@ export default function Header() {
               key={item.label}
               href={item.href}
               style={{
-                color: "var(--text-muted)",
+                color: "var(--bg)",
                 fontSize: "1rem",
                 fontWeight: 500,
                 textDecoration: "none",
@@ -141,12 +172,19 @@ export default function Header() {
 
         {/* Hamburger */}
         <button
-          className="hamburger-btn"
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+  className="hamburger-btn"
+  onClick={() => setMenuOpen(o => !o)}
+  aria-label="Toggle menu"
+  style={{
+    color: scrolled ? "#fff" : "var(--text)",
+  }}
+>
+  {menuOpen ? (
+  <X size={22} color={scrolled ? "#fff" : "var(--pink)"} />
+) : (
+  <Menu size={22} color={scrolled ? "#fff" : "var(--text)"} />
+)}
+</button>
       </header>
 
       {/* Mobile drawer */}

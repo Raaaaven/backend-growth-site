@@ -624,39 +624,105 @@ const Pain = () => (
    SERVICES
    ============================================================ */
 const services = [
-  { icon: <Zap size={16} />, title: "flows that capture revenue you're already missing", body: "we build automated email sequences that turn first-time buyers into repeat customers without relying on constant campaigns or discounts." },
-  { icon: <Target size={16} />, title: "segmentation that actually drives purchases", body: "your list isn't one audience. we segment based on behavior, intent, and buying patterns so every message feels relevant and converts." },
-  { icon: <Mail size={16} />, title: "campaigns that don't just send but sell", body: "from product drops to promotions, we craft high-converting campaigns designed to generate revenue, not just engagement." },
-  { icon: <Repeat2 size={16} />, title: "retention systems that compound over time", body: "instead of one-off emails, we build systems that increase lifetime value with every interaction, turning your list into a long-term asset." },
-  { icon: <Layers size={16} />, title: "done-for-you execution, start to scale", body: "strategy, copy, design, and optimization, handled end-to-end so you can focus on growth while your backend drives revenue." },
+  {
+    title: "flows that capture revenue you're already missing",
+    body: "we build automated email sequences that turn first-time buyers into repeat customers without relying on constant campaigns or discounts.",
+  },
+  {
+    title: "segmentation that actually drives purchases",
+    body: "your list isn't one audience. we segment based on behavior, intent, and buying patterns so every message feels relevant and converts.",
+  },
+  {
+    title: "campaigns that don't just send but sell",
+    body: "from product drops to promotions, we craft high-converting campaigns designed to generate revenue, not just engagement.",
+  },
+  {
+    title: "retention systems that compound over time",
+    body: "instead of one-off emails, we build systems that increase lifetime value with every interaction, turning your list into a long-term asset.",
+  },
+  {
+    title: "done-for-you execution, start to scale",
+    body: "strategy, copy, design, and optimization, handled end-to-end so you can focus on growth while your backend drives revenue.",
+  },
 ];
 
-/* rotate all 3 colors: pink, orange, cyan, pink, orange */
-const SERVICE_COLORS = ["var(--pink)", "var(--orange)", "var(--cyan)", "var(--pink)", "var(--orange)"];
-const SERVICE_ICON_BGS = [
-  "rgba(255,45,120,0.08)", "rgba(255,107,53,0.08)",
-  "rgba(0,200,224,0.10)", "rgba(255,45,120,0.08)", "rgba(255,107,53,0.08)"
+const SERVICE_COLORS = [
+  "var(--pink)",
+  "var(--orange)",
+  "var(--cyan)",
+  "var(--pink)",
+  "var(--orange)",
 ];
 
 const Services = () => (
   <>
     <Bridge from="var(--dark)" to="var(--dark-2)" />
-    <section style={{ padding: "1rem 1.5rem 2rem", background: "var(--dark-2)" }}>
+
+    <section
+      style={{
+        padding: "1rem 1.5rem 2rem",
+        background: "var(--dark-2)",
+      }}
+    >
       <div className="section-inner">
-        <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: "3.5rem" }}>
-          <h2 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "clamp(1.8rem, 3vw, 2.4rem)", lineHeight: 1.2, letterSpacing: "-0.02em", maxWidth: "560px", textAlign: "center", margin: "0 auto" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          style={{ marginBottom: "3.5rem" }}
+        >
+          <h2
+            style={{
+              fontFamily: "var(--font)",
+              fontWeight: 700,
+              fontSize: "clamp(1.8rem, 3vw, 2.4rem)",
+              lineHeight: 1.2,
+              letterSpacing: "-0.02em",
+              maxWidth: "560px",
+              textAlign: "center",
+              margin: "0 auto",
+            }}
+          >
             we help you turn clicks into{" "}
-            {/* orange = energy */}
-            <span style={{ color: "var(--orange)", fontStyle: "italic" }}>compounding revenue</span>
+            <span
+              style={{
+                color: "var(--orange)",
+                fontStyle: "italic",
+              }}
+            >
+              compounding revenue
+            </span>
           </h2>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", marginTop: "0.85rem", maxWidth: "520px", lineHeight: 1.75, textAlign: "center", marginRight: "auto", marginLeft: "auto" }}>
-            stop leaking profit after acquisition by activating your existing customers through retention systems that increase repeat purchases, lifetime value, and long-term brand growth.
+
+          <p
+            style={{
+              color: "var(--text-muted)",
+              fontSize: "0.95rem",
+              marginTop: "0.85rem",
+              maxWidth: "520px",
+              lineHeight: 1.75,
+              textAlign: "center",
+              marginRight: "auto",
+              marginLeft: "auto",
+            }}
+          >
+            stop leaking profit after acquisition by activating your existing
+            customers through retention systems that increase repeat purchases,
+            lifetime value, and long-term brand growth.
           </p>
         </motion.div>
 
-        <div className="services-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+        <div
+          className="services-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "0.75rem",
+          }}
+        >
           {services.map((s, i) => {
             const isLast = i === services.length - 1;
+
             return (
               <motion.div
                 key={i}
@@ -676,25 +742,38 @@ const Services = () => (
                   background: "#fff",
                   border: "1px solid var(--border)",
                   borderRadius: "var(--radius)",
-                  /* colored top strip — rotates all 3 */
                   borderTop: `3px solid ${SERVICE_COLORS[i]}`,
                   padding: "1.4rem",
                   transition: "border-color 0.18s, box-shadow 0.18s",
                   justifySelf: "center",
-                  ...(isLast && { gridColumn: "1 / -1", maxWidth: "none", margin: 0 }),
+                  ...(isLast && {
+                    gridColumn: "1 / -1",
+                    maxWidth: "none",
+                    margin: 0,
+                  }),
                 }}
               >
-                <div style={{
-                  width: "32px", height: "32px", borderRadius: "9px",
-                  background: SERVICE_ICON_BGS[i],
-                  border: `1px solid ${SERVICE_COLORS[i]}30`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: SERVICE_COLORS[i], marginBottom: "0.85rem",
-                }}>
-                  {s.icon}
-                </div>
-                <h3 style={{ fontFamily: "var(--font)", fontWeight: 600, fontSize: "1rem", marginBottom: "0.45rem", lineHeight: 1.45 }}>{s.title}</h3>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", lineHeight: 1.7 }}>{s.body}</p>
+                <h3
+                  style={{
+                    fontFamily: "var(--font)",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                    marginBottom: "0.45rem",
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {s.title}
+                </h3>
+
+                <p
+                  style={{
+                    color: "var(--text-muted)",
+                    fontSize: "0.85rem",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {s.body}
+                </p>
               </motion.div>
             );
           })}
@@ -763,7 +842,6 @@ const RevenueSystem = () => {
             <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", maxWidth: "520px", margin: "0 auto 0.5rem", lineHeight: 1.8 }}>
               a 6 step backend infrastructure designed to turn your existing traffic into repeat purchases, higher lifetime value, and predictable retention-driven revenue
             </p>
-            <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", fontStyle: "italic" }}>built once. optimized continuously. owned by you.</p>
           </motion.div>
         </div>
         <div ref={stackRef} style={{ position: "relative", height: `${(STEPS.length + 1) * 100}vh`, paddingTop: "20vh", overflow: "visible" }}>
@@ -1032,7 +1110,7 @@ const WhatHappensNext = () => {
         <div style={{ maxWidth: "780px", margin: "0 auto" }}>
           <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "3.5rem" }}>
             <h2 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "0.65rem" }}>what happens next</h2>
-            <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7 }}>a clear, structured path from insight to execution without guesswork, delays, or hand holding</p>
+            <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", maxWidth: "480px", margin: "0 auto", lineHeight: 1.7 }}>a clear, structured path from insight to execution without guesswork, delays, or hand holding</p>
           </motion.div>
 
           {/* Desktop */}
@@ -1060,7 +1138,7 @@ const WhatHappensNext = () => {
                       padding: "0.13rem 0.5rem", borderRadius: "100px", marginBottom: "0.5rem", transition: "all 0.35s"
                     }}>{step.num}</span>
                     <h3 style={{ fontFamily: "var(--font)", fontWeight: 600, fontSize: "1.05rem", letterSpacing: "-0.01em", lineHeight: 1.35, marginBottom: "0.35rem", color: isActive ? "var(--text)" : "var(--text-muted)", transition: "color 0.35s" }}>{step.title}</h3>
-                    <p style={{ color: "var(--text-muted)", fontSize: "0.8rem", lineHeight: 1.72, maxWidth: "290px", marginLeft: side === "right" ? "auto" : 0 }}>{step.body}</p>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.72, maxWidth: "290px", marginLeft: side === "right" ? "auto" : 0 }}>{step.body}</p>
                   </motion.div>
                   <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "2.1rem" }}><Dot isActive={isActive} /></div>
                   <div style={{ flex: 1 }} />
@@ -1093,7 +1171,7 @@ const WhatHappensNext = () => {
           {/* Walk away callout */}
           <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginTop: "3rem", paddingTop: "2.5rem", borderTop: "1px solid var(--border)" }}>
             <h2 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "clamp(1.4rem, 3vw, 2rem)", letterSpacing: "-0.02em", lineHeight: 1.2, marginBottom: "0.65rem" }}>what you'll walk away with</h2>
-            <p style={{ color: "var(--text-muted)", fontSize: "0.82rem", maxWidth: "480px", margin: "0 auto 1.5rem", lineHeight: 1.75 }}>a real time breakdown of your revenue leaks, clear gaps, practical fixes, and a tailored plan to capture what you're currently missing</p>
+            <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", maxWidth: "480px", margin: "0 auto 1.5rem", lineHeight: 1.75 }}>a real time breakdown of your revenue leaks, clear gaps, practical fixes, and a tailored plan to capture what you're currently missing</p>
             <a href="https://calendly.com/kinzaqasim789/strategy-call-60-min" className="btn-primary" style={{ fontSize: "0.84rem" }}>
               <PhoneCall size={13} /> book your free backend audit
             </a>
@@ -1184,7 +1262,7 @@ const PricingContext = () => {
               <h2 style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: "clamp(1.5rem, 3vw, 2.1rem)", letterSpacing: "-0.02em", lineHeight: 1.25, marginBottom: "1.4rem" }}>
                 what it takes to turn your backend into a revenue channel
               </h2>
-              <p style={{ color: "var(--text-muted)", fontSize: "0.83rem", lineHeight: 1.8, marginBottom: "0.85rem" }}>you could invest heavily and still end up waiting for direction.or go low cost and end up rebuilding everything later.
+              <p style={{ color: "var(--text-muted)", fontSize: "0.93rem", lineHeight: 1.8, marginBottom: "0.85rem" }}>you could invest heavily and still end up waiting for direction.or go low cost and end up rebuilding everything later.
               we sit where it actually works.
               experienced strategy, hands on execution, and a system built to generate revenue consistently, not just exist in the background.</p>
             </motion.div>
@@ -1233,56 +1311,7 @@ const FinalCTA = () => (
   </>
 );
 
-/* ============================================================
-   SOCIAL PROOF
-   ============================================================ */
-const testimonials = [
-  { role: "cmo", text: "went from $8k/month in email to $63k in 90 days. the attribution clarity alone changed how we think about our whole marketing mix." },
-  { role: "founder", text: "our previous agency sent blasts. launchbackend built us an actual system. the win-back flow alone pays for the retainer 4× over." },
-  { role: "head of growth ", text: "segmentation work in month one unlocked a customer segment we didn't know existed. $120k from that segment last quarter." },
-  { role: "ceo", text: "we were burning $40k/mo on facebook to drive repeat purchases. now email does that job and cac dropped 60%." },
-  { role: "director", text: "open rates went from 18% to 51%. customers actually reply to our emails now. the copy is on another level." },
-  { role: "founder", text: "built our entire lifecycle marketing in 3 weeks. every automation continues to generate revenue without us touching it." },
-];
 
-/* rotate star colors: pink, orange, cyan */
-const STAR_COLORS = ["var(--pink)", "var(--orange)", "var(--cyan)", "var(--pink)", "var(--orange)", "var(--cyan)"];
-
-const TestCard = ({ t, idx }) => (
-  <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "var(--radius)", padding: "1.1rem", width: "280px", flexShrink: 0, boxShadow: "var(--shadow)" }}>
-    <div style={{ display: "flex", marginBottom: "0.5rem" }}>
-      {[...Array(5)].map((_, i) => <span key={i} style={{ color: STAR_COLORS[idx % STAR_COLORS.length], fontSize: "0.68rem" }}>★</span>)}
-    </div>
-    <p style={{ color: "var(--text-soft)", fontSize: "0.76rem", lineHeight: 1.65, marginBottom: "0.7rem" }}>"{t.text}"</p>
-    <div style={{ borderTop: "1px solid var(--border)", paddingTop: "0.55rem" }}>
-      <div style={{ fontWeight: 600, fontSize: "0.72rem" }}>{t.name}</div>
-      <div style={{ fontSize: "0.64rem", color: "var(--text-muted)", marginTop: "0.08rem" }}>{t.role}</div>
-    </div>
-  </div>
-);
-
-const SocialProof = () => {
-  const half = Math.ceil(testimonials.length / 2);
-  return (
-    <>
-      <Bridge from="var(--dark)" to="var(--dark-2)" />
-      <section style={{ padding: "4.5rem 0 6rem", background: "var(--dark-2)", overflow: "hidden" }}>
-        <div style={{ maxWidth: "780px", margin: "0 auto", padding: "0 1.5rem", textAlign: "center", marginBottom: "2.5rem" }}>
-          <motion.h2 initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: "clamp(1.4rem, 3vw, 2rem)", letterSpacing: "-0.02em" }}>
-            brands that trusted the system
-          </motion.h2>
-        </div>
-        <div style={{ overflow: "hidden", marginBottom: "0.65rem" }}>
-          <div className="marquee-row fwd">{[...testimonials.slice(0, half), ...testimonials.slice(0, half)].map((t, i) => <TestCard key={i} t={t} idx={i} />)}</div>
-        </div>
-        <div style={{ overflow: "hidden" }}>
-          <div className="marquee-row rev">{[...testimonials.slice(half), ...testimonials.slice(half)].map((t, i) => <TestCard key={i} t={t} idx={i + half} />)}</div>
-        </div>
-      </section>
-    </>
-  );
-};
 
 /* ============================================================
    PAGE EXPORT
@@ -1304,7 +1333,6 @@ export default function Home() {
         <WhatHappensNext />
         <FAQ />
         <PricingContext />
-        <SocialProof />
         <FinalCTA />
       </main>
     </>
